@@ -1,0 +1,18 @@
+{
+  "name": "r6picker",
+  "version": "1.0.0",
+  "dependencies": {
+    "@hapi/hapi": "^21.3.0",
+    "r6operators": "^2.4.0",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/hapi": "^18.0.8"
+  },
+  "scripts": {
+    "dev:tsc": "tsc --watch -p .",
+    "dev:serve": "npx nodemon -e js -w lib lib/index.js",
+    "dev": "npm run dev:tsc & npm run dev:serve"
+  },
+  "main": "lib/index.js"
+}
