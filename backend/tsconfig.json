@@ -1,7 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "incremental": true,
+    "declaration": true,
+    "target": "es6",
     "module": "commonjs",
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,

@@ -4,10 +4,14 @@
   "dependencies": {
     "@hapi/hapi": "^21.3.0",
     "r6operators": "^2.4.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "joi": "^17.9.1",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/hapi": "^18.0.8"
+    "@types/hapi": "^18.0.8",
+    "@types/lodash": "^4.14.191",
+    "@types/joi": "^17.2.3"
   },
   "scripts": {
     "watch": "npx nodemon",
