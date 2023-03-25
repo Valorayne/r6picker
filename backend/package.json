@@ -6,7 +6,8 @@
     "r6operators": "^2.4.0",
     "typescript": "^5.0.2",
     "joi": "^17.9.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "hapi-router": "^4.0.1"
   },
   "devDependencies": {
     "@types/hapi": "^18.0.8",
