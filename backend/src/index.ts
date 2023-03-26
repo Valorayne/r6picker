@@ -3,7 +3,7 @@ import Hapi from "@hapi/hapi"
 import hapiRouter from "hapi-router"
 
 async function runServer() {
-  const server = Hapi.server({ port: 3000, host: 'localhost' });
+  const server = Hapi.server({ port: 3000, host: 'localhost', routes: { cors: true } });
   await server.register({ plugin: hapiRouter, options: { routes: "**/**.route.ts" } })
   await server.start();
   return server

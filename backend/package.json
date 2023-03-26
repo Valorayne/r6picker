@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "dependencies": {
     "@hapi/hapi": "^21.3.0",
-    "r6operators": "^2.4.0",
-    "typescript": "^5.0.2",
+    "cors": "^2.8.5",
+    "hapi-router": "^4.0.1",
     "joi": "^17.9.1",
     "lodash": "^4.17.21",
-    "hapi-router": "^4.0.1"
+    "r6operators": "^2.4.0",
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@types/hapi": "^18.0.8",
-    "@types/lodash": "^4.14.191",
-    "@types/joi": "^17.2.3"
+    "@types/joi": "^17.2.3",
+    "@types/lodash": "^4.14.191"
   },
   "scripts": {
     "watch": "npx nodemon",
