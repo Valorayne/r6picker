@@ -1,7 +1,7 @@
 import { ServerRoute } from "@hapi/hapi"
 import { getAllOperators } from "./operators"
 import Joi from "joi";
-import { ALL_TEAMS } from "./types";
+import { ALL_TEAMS } from "shared/operators";
 
 const route: ServerRoute = {
   method: "GET",

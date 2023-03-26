@@ -24,3 +24,12 @@ export const OPERATOR_IDS_PER_TEAM: Record<Team, readonly OperatorId[]> = {
   attackers: ALL_ATTACKER_IDS,
   defenders: ALL_DEFENDER_IDS
 }
+
+export type OperatorDto = {
+  id: string
+  name: string
+  svg: {
+    contents: string
+    attributes: Record<string, unknown>
+  }
+}

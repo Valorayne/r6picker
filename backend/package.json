@@ -2,6 +2,7 @@
   "name": "r6picker",
   "version": "1.0.0",
   "dependencies": {
+    "shared": "file:../shared",
     "@hapi/hapi": "^21.3.0",
     "cors": "^2.8.5",
     "hapi-router": "^4.0.1",
