@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import type { OperatorDto } from "shared/operators";
 
-export type OperatorIconProps = OperatorDto["svg"] & { size?: number }
+export type OperatorIconProps = {
+  attributes: Record<string, string>
+  contents: string
+  size?: number
+}
 withDefaults(defineProps<OperatorIconProps>(), { size: 50 })
 </script>
 

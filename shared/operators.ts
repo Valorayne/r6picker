@@ -26,10 +26,10 @@ export const OPERATOR_IDS_PER_TEAM: Record<Team, readonly OperatorId[]> = {
 }
 
 export type OperatorDto = {
-  id: string
+  id: OperatorId
   name: string
   svg: {
     contents: string
-    attributes: Record<string, unknown>
+    attributes: Record<string, string>
   }
 }
