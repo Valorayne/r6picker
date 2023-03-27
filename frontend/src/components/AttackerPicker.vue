@@ -3,6 +3,7 @@ import OperatorIcon from "@/components/OperatorIcon.vue"
 import { useOperatorsQuery } from "@/queries/operators";
 import { AttackerId, OperatorId } from "../../../shared/operators";
 import { ref } from "vue";
+import Overlay from "@/components/Overlay.vue";
 
 const { data: attackers } = useOperatorsQuery("attackers")
 
@@ -14,8 +15,7 @@ const selectedByOthers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
 </script>
 
 <template>
-  <div v-if="attackers.length"
-       class="bg-gradient-to-br from-rainbow-low to-rainbow-high border border-slate-500 border-2 rounded p-4">
+  <Overlay v-if="attackers.length">
     <div class="grid gap-1 grid-cols-7">
       <OperatorIcon
           v-for="attacker in attackers"
@@ -27,5 +27,5 @@ const selectedByOthers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
           @click="() => attackerClicked(attacker.id)"
       />
     </div>
-  </div>
+  </Overlay>
 </template>
