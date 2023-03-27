@@ -5,7 +5,8 @@ module.exports = {
         extend: {
             colors: {
                 'rainbow-low': '#1e2445',
-                'rainbow-high': '#253d5e'
+                'rainbow-high': '#253d5e',
+                'selected-operator': '#2ba0e5'
             }
         },
     },
