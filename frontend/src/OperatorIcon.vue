@@ -18,15 +18,15 @@ defineEmits<{
 
 <template>
   <div :class="{
-    'bg-selected-operator': selected,
+    'bg-selected-operator rounded': selected,
     'opacity-30': disabled,
-    'hover:scale-110': !disabled && !selected
+    'hover:scale-110': !disabled && !selected,
+    'hover:cursor-pointer': !disabled && !selected
   }" class="transition-all duration-150">
     <svg v-bind="attributes"
          v-html="contents"
          :width="size"
          :height="size"
-         class="hover:cursor-pointer"
          @click="() => !disabled && $emit('click')"
     />
   </div>

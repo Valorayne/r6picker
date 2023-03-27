@@ -7,6 +7,9 @@ module.exports = {
                 'rainbow-low': '#1e2445',
                 'rainbow-high': '#253d5e',
                 'selected-operator': '#2ba0e5'
+            },
+            backgroundImage: {
+                'bank-0': "url('/assets/maps/bank/bank-0.jpg')"
             }
         },
     },
