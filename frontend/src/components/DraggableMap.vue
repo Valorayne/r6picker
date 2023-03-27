@@ -8,14 +8,15 @@ const props = defineProps<{
   height: number
 }>()
 
-const { position, startDrag, endDrag, moveMouse } = useDraggable({
+const { position, startDrag, endDrag, moveMouse, isDragging } = useDraggable({
   width: props.width,
   height: props.height
 })
 </script>
 
 <template>
-  <div class="w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black hover:cursor-move"
+  <div class="w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black"
+       :class="{ 'cursor-move': isDragging }"
        :style="`background-position: left ${-position.x}px top ${-position.y}px`"
        @mousedown="startDrag"
        @mouseup="endDrag"

@@ -16,7 +16,7 @@ export function useDraggable({
 }: UseDraggableProps) {
   type Position = { x: number; y: number }
 
-  const mapPosition = ref<Position>({ x: 0, y: 0 })
+  const position = ref<Position>({ x: 0, y: 0 })
   const isDragging = ref(false)
   const windowSize = useWindowSize()
 
@@ -32,14 +32,15 @@ export function useDraggable({
 
   const moveMouse = (e) => {
     if (!isDragging.value) return
-    mapPosition.value = {
-      x: clamp(limits.value.minX, limits.value.maxX, mapPosition.value.x - e.movementX),
-      y: clamp(limits.value.minY, limits.value.maxY, mapPosition.value.y - e.movementY)
+    position.value = {
+      x: clamp(limits.value.minX, limits.value.maxX, position.value.x - e.movementX),
+      y: clamp(limits.value.minY, limits.value.maxY, position.value.y - e.movementY)
     }
   }
 
   return {
-    position: mapPosition,
+    position,
+    isDragging,
     startDrag,
     endDrag,
     moveMouse

@@ -14,7 +14,8 @@ const selectedByOthers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
 </script>
 
 <template>
-  <div class="bg-gradient-to-br from-rainbow-low to-rainbow-high border border-slate-500 border-2 rounded p-4">
+  <div v-if="attackers.length"
+       class="bg-gradient-to-br from-rainbow-low to-rainbow-high border border-slate-500 border-2 rounded p-4">
     <div class="grid gap-1 grid-cols-7">
       <OperatorIcon
           v-for="attacker in attackers"
