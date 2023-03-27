@@ -1,15 +1,20 @@
 <script setup lang="ts">
 
-export type OperatorIconProps = {
+withDefaults(defineProps<{
   attributes: Record<string, unknown>
   contents: string
   size?: number
   selected?: boolean
-}
-withDefaults(defineProps<OperatorIconProps>(), { size: 50, selected: false })
+}>(), {
+  size: 50,
+  selected: false
+})
+defineEmits<{
+  (e: 'click'): void
+}>()
 </script>
 
 <template>
   <svg v-bind="attributes" v-html="contents" :width="size" :height="size"
-       class="hover:cursor-pointer"/>
+       class="hover:cursor-pointer" @click="() => $emit('click')"/>
 </template>
