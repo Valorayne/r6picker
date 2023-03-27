@@ -19,8 +19,9 @@ defineEmits<{
 <template>
   <div :class="{
     'bg-selected-operator': selected,
-    'opacity-30': disabled
-  }">
+    'opacity-30': disabled,
+    'hover:scale-110': !disabled && !selected
+  }" class="transition-all duration-150">
     <svg v-bind="attributes"
          v-html="contents"
          :width="size"
