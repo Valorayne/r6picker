@@ -2,13 +2,13 @@
   "name": "r6picker",
   "version": "1.0.0",
   "dependencies": {
-    "shared": "file:../shared",
     "@hapi/hapi": "^21.3.0",
     "cors": "^2.8.5",
-    "hapi-router": "^4.0.1",
+    "hapi-router": "^5.1.0",
     "joi": "^17.9.1",
     "lodash": "^4.17.21",
     "r6operators": "^2.4.0",
+    "shared": "file:../shared",
     "typescript": "^5.0.2"
   },
   "devDependencies": {

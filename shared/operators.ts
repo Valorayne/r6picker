@@ -30,6 +30,6 @@ export type OperatorDto = {
   name: string
   svg: {
     contents: string
-    attributes: Record<string, string>
+    attributes: Record<string, unknown>
   }
 }

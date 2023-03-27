@@ -1,5 +1,5 @@
 import Hapi from "@hapi/hapi"
-//@ts-ignore
+// @ts-ignore
 import hapiRouter from "hapi-router"
 
 async function runServer() {

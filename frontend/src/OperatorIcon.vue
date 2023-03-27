@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 export type OperatorIconProps = {
-  attributes: Record<string, string>
+  attributes: Record<string, unknown>
   contents: string
   size?: number
 }
