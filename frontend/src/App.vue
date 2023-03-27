@@ -1,13 +1,8 @@
-<script setup lang="ts">import AttackerPicker from "@/AttackerPicker.vue"</script>
+<script setup lang="ts">
+import AttackerPicker from "@/components/AttackerPicker.vue"
+import DraggableMap from "@/components/DraggableMap.vue";</script>
 
 <template>
-  <div class="w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black">
-    <div class="p-4">
-      <AttackerPicker
-          class="bg-gradient-to-br from-rainbow-low to-rainbow-high border border-slate-500 border-2 rounded p-4"/>
-    </div>
-    <div>
-
-    </div>
-  </div>
+  <DraggableMap :map-id="'bank-0'" :width="2560" :height="1440"/>
+  <AttackerPicker class="fixed top-4 left-4"/>
 </template>
