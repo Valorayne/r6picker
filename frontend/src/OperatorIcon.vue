@@ -5,9 +5,11 @@ withDefaults(defineProps<{
   contents: string
   size?: number
   selected?: boolean
+  disabled?: boolean
 }>(), {
   size: 50,
-  selected: false
+  selected: false,
+  disabled: false
 })
 defineEmits<{
   (e: 'click'): void
@@ -15,13 +17,16 @@ defineEmits<{
 </script>
 
 <template>
-  <div :class="selected ? 'bg-selected-operator' : ''">
+  <div :class="{
+    'bg-selected-operator': selected,
+    'opacity-30': disabled
+  }">
     <svg v-bind="attributes"
          v-html="contents"
          :width="size"
          :height="size"
          class="hover:cursor-pointer"
-         @click="() => $emit('click')"
+         @click="() => !disabled && $emit('click')"
     />
   </div>
 </template>
