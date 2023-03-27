@@ -1,4 +1,4 @@
-import { createApp, Plugin } from 'vue'
+import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { VueQueryPlugin } from "vue-query"
 
@@ -8,5 +8,6 @@ import '../index.css'
 const app = createApp(App)
 
 app.use(createPinia())
-app.use(VueQueryPlugin as Plugin)
+// noinspection TypeScriptValidateTypes
+app.use(VueQueryPlugin)
 app.mount('#app')
