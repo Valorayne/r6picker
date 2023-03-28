@@ -20,7 +20,7 @@ const defenderIcons = computed(() => findOperators(props.defenders, allDefenderI
 </script>
 
 <template>
-  <Overlay>
+  <Overlay v-if="allAttackerIcons?.length && allDefenderIcons?.length">
     <div class="flex flex-row">
       <Team :operators="attackerIcons"/>
       <div class="flex h-50 mx-5 items-center">

@@ -11,7 +11,7 @@ const attackerSelected = (id: AttackerId) => selectedAttacker.value = id
 const teamMembers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
 
 const attackers = computed(() => selectedAttacker.value ? teamMembers.concat([selectedAttacker.value]) : teamMembers)
-const defenders: DefenderId[] = ['doc', 'solis', 'caveira', 'mute', "pulse"]
+const defenders: DefenderId[] = ['doc', 'solis', 'caveira']
 
 </script>
 

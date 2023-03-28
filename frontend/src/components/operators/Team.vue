@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import type { OperatorDto } from "shared/operators";
 import OperatorIcon from "@/components/operators/OperatorIcon.vue"
+import { times } from "lodash-es";
+import { computed } from "vue";
 
-defineProps<{
-  operators: OperatorDto[]
+const props = defineProps<{
+  operators: (OperatorDto | {})[]
 }>()
+const fullTeam = computed(() => props.operators.concat(times(5 - props.operators.length, () => ({}))))
 </script>
 
 <template>
   <div class="flex flex-row">
     <OperatorIcon
-        v-for="operator in operators"
-        :attributes="operator.svg.attributes"
-        :contents="operator.svg.contents"
+        v-for="operator of fullTeam"
+        :attributes="operator?.svg?.attributes"
+        :contents="operator?.svg?.contents"
         :size="60"
     />
   </div>
