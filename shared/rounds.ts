@@ -6,3 +6,7 @@ export type RoundDto = {
   teamMates: AttackerId[]
   defenders: DefenderId[]
 }
+
+export type RoundResult = RoundDto & {
+  selected: AttackerId
+}

@@ -1,4 +1,4 @@
-import { RoundDto } from "shared/rounds";
+import { RoundDto, RoundResult } from "shared/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "../../../shared/operators";
 import { random, shuffle, take } from "lodash";
 
@@ -13,4 +13,9 @@ export function createNewRound(): RoundDto {
     teamMates,
     defenders
   }
+}
+
+export async function storeRoundResult(result: RoundResult) {
+  console.log(result)
+  return 200
 }
