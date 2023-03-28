@@ -7,13 +7,11 @@ defineProps<{
   selectedLayer: number
   layers: Layers
 }>()
-defineEmits<{
-  (e: 'selectLayer', layerId: number): void
-}>()
+defineEmits<{ (e: 'selectLayer', layerId: number): void }>()
 </script>
 
 <template>
-  <Overlay class="fixed right-4 bottom-4 flex flex-col space-y-2">
+  <Overlay class="flex flex-col space-y-2">
     <R6Button
         :selected="selectedLayer === +layerId"
         v-for="layerId in Object.keys(layers)"

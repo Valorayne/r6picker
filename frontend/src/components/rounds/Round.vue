@@ -6,6 +6,8 @@ import Map from "@/components/map/Map.vue";
 import TeamOverview from "@/components/operators/TeamOverview.vue";
 import type { RoundDto } from "shared/rounds";
 
+const emit = defineEmits<{ (e: 'selectionConfirmed', attacker: AttackerId): void }>()
+
 const { round } = defineProps<{ round: RoundDto }>()
 
 const selectedAttacker = ref<AttackerId | undefined>()
@@ -16,6 +18,11 @@ const attackers = computed(() =>
         ? round.teamMates.concat([selectedAttacker.value])
         : round?.teamMates ?? []
 )
+const selectionConfirmed = () => {
+  if (!selectedAttacker.value) return
+  emit('selectionConfirmed', selectedAttacker.value)
+  selectedAttacker.value = undefined
+}
 </script>
 
 <template>
@@ -24,7 +31,8 @@ const attackers = computed(() =>
       class="fixed top-4 left-4"
       :selected-attacker="selectedAttacker"
       :team-mates="round.teamMates"
-      @attackerSelected="attackerSelected"/>
+      @attackerSelected="attackerSelected"
+      @selectionConfirmed="selectionConfirmed"/>
   <TeamOverview
       class="fixed top-4 right-4"
       :attackers="attackers"

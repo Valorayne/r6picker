@@ -35,5 +35,9 @@ const layerClicked = (layerId: number) => selectedLayer.value = layerId
       :selected-layer="selectedLayer"
       :dimensions="dimensions"
       :offset="offset"/>
-  <MapLayerSelector :selected-layer="selectedLayer" @selectLayer="layerClicked" :layers="layers"/>
+  <MapLayerSelector
+      :selected-layer="selectedLayer"
+      @selectLayer="layerClicked"
+      :layers="layers"
+      class="fixed right-4 bottom-4"/>
 </template>
