@@ -20,11 +20,6 @@ export const ALL_DEFENDER_IDS = [
 ] as const
 
 export type OperatorId = AttackerId | DefenderId
-export const OPERATOR_IDS_PER_TEAM: Record<Team, readonly OperatorId[]> = {
-  attackers: ALL_ATTACKER_IDS,
-  defenders: ALL_DEFENDER_IDS
-}
-
 export type OperatorDto = {
   id: OperatorId
   name: string
