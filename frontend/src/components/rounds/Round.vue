@@ -8,15 +8,15 @@ import type { RoundDto } from "shared/rounds";
 
 const emit = defineEmits<{ (e: 'selectionConfirmed', attacker: AttackerId): void }>()
 
-const { round } = defineProps<{ round: RoundDto }>()
+const props = defineProps<{ round: RoundDto }>()
 
 const selectedAttacker = ref<AttackerId | undefined>()
 const attackerSelected = (id: AttackerId) => selectedAttacker.value = id
 
 const attackers = computed(() =>
-    selectedAttacker.value && round
-        ? round.teamMates.concat([selectedAttacker.value])
-        : round?.teamMates ?? []
+    selectedAttacker.value && props.round
+        ? props.round.teamMates.concat([selectedAttacker.value])
+        : props.round?.teamMates ?? []
 )
 const selectionConfirmed = () => {
   if (!selectedAttacker.value) return
