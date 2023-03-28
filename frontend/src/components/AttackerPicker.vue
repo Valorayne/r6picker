@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import OperatorIcon from "@/components/OperatorIcon.vue"
 import { useOperatorsQuery } from "@/queries/operators";
-import { AttackerId, OperatorId } from "../../../shared/operators";
+import type { AttackerId, OperatorId } from "shared/operators";
 import { ref } from "vue";
 import Overlay from "@/components/Overlay.vue";
 

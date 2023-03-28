@@ -1,6 +1,7 @@
 import { computed, ref } from "vue";
 import { useWindowSize } from "@/utility/windowSize";
 import { clamp } from "@/utility/numbers";
+import type { Position } from "@/utility/types";
 
 export type UseDraggableProps = {
   width: number
@@ -14,8 +15,6 @@ export function useDraggable({
   maxHorizontalOffset = 500,
   maxVerticalOffset = 300
 }: UseDraggableProps) {
-  type Position = { x: number; y: number }
-
   const position = ref<Position>({ x: 0, y: 0 })
   const isDragging = ref(false)
   const windowSize = useWindowSize()
@@ -30,7 +29,7 @@ export function useDraggable({
     maxY: height + maxVerticalOffset - windowSize.value.y
   }))
 
-  const moveMouse = (e) => {
+  const moveMouse = (e: MouseEvent) => {
     if (!isDragging.value) return
     position.value = {
       x: clamp(limits.value.minX, limits.value.maxX, position.value.x - e.movementX),

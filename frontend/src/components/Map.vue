@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { MapId } from "shared/maps";
 import { useDraggable } from "@/utility/useDraggable";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import Overlay from "@/components/Overlay.vue";
-import R6Button from "@/components/R6Button.vue"
+import R6Button from "@/components/R6Button.vue";
+import MapLayer from "@/components/MapLayer.vue";
 
 const props = defineProps<{
   mapId: MapId
@@ -26,14 +27,15 @@ const offset = {
   x: 674,
   y: 178
 }
-const baseLayer = computed(() => +Object.keys(layers)[0])
+const baseLayer = +Object.keys(layers)[0]
+const extraLayers = Object.keys(layers).map(l => +l).filter(l => l !== baseLayer)
 
 const selectedLayer = ref(0)
-const layerClicked = (layerId) => selectedLayer.value = layerId
+const layerClicked = (layerId: number) => selectedLayer.value = layerId
 </script>
 
 <template>
-  <div class=" w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black"
+  <div class="w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black"
        :class="{ 'cursor-move': isDragging }"
        :style="`background-position: left ${-position.x}px top ${-position.y}px`"
        @mousedown="startDrag"
@@ -41,13 +43,8 @@ const layerClicked = (layerId) => selectedLayer.value = layerId
        @mouseleave="endDrag"
        @mousemove="moveMouse"
   >
-    <div v-if="selectedLayer"
-         class="bg-no-repeat w-full h-screen transition-[background-image] duration-400"
-         :style="{
-          'background-position': `left ${offset.x-position.x}px top ${offset.y-position.y}px`,
-          'background-image': `url('/assets/maps/bank/bank-${selectedLayer}.jpg')`
-        }"
-    />
+    <MapLayer v-for="layer of extraLayers" :layer="layer" :offset="offset" :position="position"
+              :selectedLayer="selectedLayer" :mapId="mapId"/>
   </div>
 
   <Overlay class="fixed right-4 bottom-4 flex flex-col space-y-2">

@@ -20,8 +20,7 @@ defineEmits<{
   <div :class="{
     'bg-selected-operator rounded': selected,
     'opacity-30': disabled,
-    'hover:scale-110': !disabled && !selected,
-    'hover:cursor-pointer': !disabled && !selected
+    'hover:scale-110 hover:cursor-pointer': !disabled && !selected,
   }" class="transition-all duration-150">
     <svg v-bind="attributes"
          v-html="contents"
