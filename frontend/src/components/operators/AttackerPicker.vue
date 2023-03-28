@@ -6,7 +6,7 @@ import Overlay from "@/components/utility/Overlay.vue";
 
 defineProps<{
   selectedAttacker: AttackerId | undefined
-  teamMembers: AttackerId[]
+  teamMates: AttackerId[]
 }>()
 
 defineEmits<{
@@ -25,7 +25,7 @@ const { data: attackers } = useOperatorsQuery("attackers")
           :contents="attacker.svg.contents"
           :size="80"
           :selected="selectedAttacker === attacker.id"
-          :disabled="teamMembers.includes(attacker.id)"
+          :disabled="teamMates.includes(attacker.id)"
           selectable
           @click="() => $emit('attackerSelected', attacker.id)"
       />
