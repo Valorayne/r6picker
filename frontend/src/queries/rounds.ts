@@ -1,6 +1,6 @@
 import { CONSTANTS } from "@/constants";
 import { useQuery } from "vue-query";
-import type { RoundDto, RoundResult } from "shared/rounds";
+import type { RoundDto, RoundResultDto } from "shared/rounds";
 
 export function useNewRoundQuery() {
   return useQuery(['rounds', 'new'],
@@ -9,7 +9,7 @@ export function useNewRoundQuery() {
     })
 }
 
-export function storeRoundResult(result: RoundResult) {
+export function storeRoundResult(result: RoundResultDto) {
   return fetch(`${CONSTANTS.BASE_URL}/rounds/results`, {
     method: "POST",
     headers: {

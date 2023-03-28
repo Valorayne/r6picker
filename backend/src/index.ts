@@ -1,10 +1,16 @@
 import Hapi from "@hapi/hapi"
 // @ts-ignore
 import hapiRouter from "hapi-router"
+import { connect } from "mongoose"
+
+const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
+  throw "Missing ENV var 'MONGO_ATLAS_CONNECTION'"
+})()
 
 async function runServer() {
   const server = Hapi.server({ port: 3000, host: 'localhost', routes: { cors: true } });
   await server.register({ plugin: hapiRouter, options: { routes: "**/**.route.ts" } })
+  await connect(connectionString)
   await server.start();
   return server
 }

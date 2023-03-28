@@ -7,6 +7,6 @@ export type RoundDto = {
   defenders: DefenderId[]
 }
 
-export type RoundResult = RoundDto & {
+export type RoundResultDto = RoundDto & {
   selected: AttackerId
 }
