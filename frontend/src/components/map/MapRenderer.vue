@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDraggable } from "@/utility/useDraggable";
-import type { MapId } from "shared/maps";
+import type { Layers, MapId } from "shared/maps";
 import MapLayer from "@/components/map/MapLayer.vue";
 import type { Dimensions, Position } from "@/utility/types";
 
@@ -8,7 +8,7 @@ const props = defineProps<{
   mapId: MapId,
   dimensions: Dimensions,
   offset: Position,
-  layers: Record<number, string>
+  layers: Layers
   selectedLayer: number
 }>()
 

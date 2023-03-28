@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Round from "@/components/Round.vue";
+import Round from "@/components/rounds/Round.vue";
 import { useNewRoundQuery } from "@/queries/rounds";
 
 const { data: round } = useNewRoundQuery()

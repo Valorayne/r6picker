@@ -19,9 +19,7 @@ const attackers = computed(() =>
 </script>
 
 <template>
-  <Map
-      :map-id="round.map"
-      :dimensions="{ width:2560, height: 1440 }"/>
+  <Map :map-id="round.map"/>
   <AttackerPicker
       class="fixed top-4 left-4"
       :selected-attacker="selectedAttacker"
