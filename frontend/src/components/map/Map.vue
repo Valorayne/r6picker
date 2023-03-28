@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { MapId } from "shared/maps";
 import { ref } from "vue";
-import Overlay from "@/components/Overlay.vue";
-import R6Button from "@/components/R6Button.vue";
+import Overlay from "@/components/utility/Overlay.vue";
+import R6Button from "@/components/utility/R6Button.vue";
 import MapRenderer from "@/components/map/MapRenderer.vue";
 import type { Dimensions } from "@/utility/types";
 

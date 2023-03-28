@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AttackerPicker from "@/components/AttackerPicker.vue"
+import AttackerPicker from "@/components/operators/AttackerPicker.vue"
 import Map from "@/components/map/Map.vue";</script>
 
 <template>

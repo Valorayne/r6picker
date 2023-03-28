@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import OperatorIcon from "@/components/OperatorIcon.vue"
+import OperatorIcon from "@/components/operators/OperatorIcon.vue"
 import { useOperatorsQuery } from "@/queries/operators";
 import type { AttackerId, OperatorId } from "shared/operators";
 import { ref } from "vue";
-import Overlay from "@/components/Overlay.vue";
+import Overlay from "@/components/utility/Overlay.vue";
 
 const { data: attackers } = useOperatorsQuery("attackers")
 
