@@ -1,17 +1,16 @@
 import { computed, ref } from "vue";
 import { useWindowSize } from "@/utility/windowSize";
 import { clamp } from "@/utility/numbers";
-import type { Position } from "@/utility/types";
+import type { Dimensions, Position } from "@/utility/types";
 
 export type UseDraggableProps = {
-  width: number
-  height: number
+  dimensions: Dimensions,
   maxHorizontalOffset?: number
   maxVerticalOffset?: number
 }
 
 export function useDraggable({
-  width, height,
+  dimensions: { width, height },
   maxHorizontalOffset = 500,
   maxVerticalOffset = 300
 }: UseDraggableProps) {
