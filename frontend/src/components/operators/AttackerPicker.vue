@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import OperatorIcon from "@/components/operators/OperatorIcon.vue"
 import { useOperatorsQuery } from "@/queries/operators";
-import type { AttackerId, OperatorId } from "shared/operators";
-import { ref } from "vue";
+import type { AttackerId } from "shared/operators";
 import Overlay from "@/components/utility/Overlay.vue";
 
+defineProps<{
+  selectedAttacker: AttackerId | undefined
+  teamMembers: AttackerId[]
+}>()
+
+defineEmits<{
+  (e: 'attackerSelected', id: AttackerId): void
+}>()
+
 const { data: attackers } = useOperatorsQuery("attackers")
-
-const selectedAttacker = ref<OperatorId | undefined>()
-const attackerClicked = (id: OperatorId) => selectedAttacker.value = id
-
-const selectedByOthers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
-
 </script>
 
 <template>
@@ -23,8 +25,9 @@ const selectedByOthers: AttackerId[] = ['ash', 'gridlock', 'kali', 'blitz']
           :contents="attacker.svg.contents"
           :size="80"
           :selected="selectedAttacker === attacker.id"
-          :disabled="selectedByOthers.includes(attacker.id)"
-          @click="() => attackerClicked(attacker.id)"
+          :disabled="teamMembers.includes(attacker.id)"
+          selectable
+          @click="() => $emit('attackerSelected', attacker.id)"
       />
     </div>
   </Overlay>

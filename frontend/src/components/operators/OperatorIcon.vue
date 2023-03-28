@@ -4,6 +4,7 @@ withDefaults(defineProps<{
   attributes: Record<string, unknown>
   contents: string
   size?: number
+  selectable?: boolean
   selected?: boolean
   disabled?: boolean
 }>(), {
@@ -20,7 +21,7 @@ defineEmits<{
   <div :class="{
     'bg-selected-operator rounded': selected,
     'opacity-30': disabled,
-    'hover:scale-110 hover:cursor-pointer': !disabled && !selected,
+    'hover:scale-110 hover:cursor-pointer': !disabled && !selected && selectable,
   }" class="transition-all duration-150">
     <svg v-bind="attributes"
          v-html="contents"
