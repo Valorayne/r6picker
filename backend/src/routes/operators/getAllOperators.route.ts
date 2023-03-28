@@ -1,5 +1,5 @@
 import { ServerRoute } from "@hapi/hapi"
-import { getAllOperators } from "./operators"
+import { getAllOperators } from "../../models/operators"
 import Joi from "joi";
 import { ALL_TEAMS } from "shared/operators";
 

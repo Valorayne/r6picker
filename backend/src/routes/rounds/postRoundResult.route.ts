@@ -1,7 +1,7 @@
 import { ServerRoute } from "@hapi/hapi"
 import Joi from "joi";
 import { ALL_MAP_IDS } from "shared/maps";
-import { storeRoundResult } from "./rounds";
+import { storeRoundResult } from "../../models/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { RoundResultDto } from "shared/rounds";
 

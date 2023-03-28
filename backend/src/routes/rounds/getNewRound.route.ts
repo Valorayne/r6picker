@@ -1,5 +1,5 @@
 import { ServerRoute } from "@hapi/hapi"
-import { createNewRound } from "./rounds"
+import { createNewRound } from "../../models/rounds"
 
 const route: ServerRoute = {
   method: "GET",
