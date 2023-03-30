@@ -10,7 +10,9 @@
     "mongoose": "^7.0.3",
     "r6operators": "^2.4.0",
     "shared": "file:../shared",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "@typegoose/typegoose": "^11.0.0",
+    "@hapi/boom": "^10.0.1"
   },
   "devDependencies": {
     "@types/hapi": "^18.0.8",
@@ -21,7 +23,8 @@
   "scripts": {
     "watch": "npx nodemon",
     "start": "npx ts-node src/index.ts",
-    "update-operators": "npx ts-node src/scripts/updateOperators.ts"
+    "update-operators": "npx ts-node src/scripts/updateOperators.ts",
+    "insert-map": "npx ts-node src/scripts/insertMap.ts"
   },
   "main": "lib/index.js"
 }

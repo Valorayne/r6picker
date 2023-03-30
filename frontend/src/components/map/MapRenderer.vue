@@ -2,7 +2,7 @@
 import { useDraggable } from "@/utility/useDraggable";
 import type { Layers, MapId } from "shared/maps";
 import MapLayer from "@/components/map/MapLayer.vue";
-import type { Dimensions, Position } from "@/utility/types";
+import type { Dimensions, Position } from "shared/types";
 
 const props = defineProps<{
   mapId: MapId,

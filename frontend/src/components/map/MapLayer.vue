@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Position } from "@/utility/types";
+import type { Position } from "shared/types";
 import type { MapId } from "shared/maps";
 
 defineProps<{

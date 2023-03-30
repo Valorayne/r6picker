@@ -1,7 +1,4 @@
-// @ts-ignore
 import Hapi from "@hapi/hapi"
-// @ts-ignore
-import hapiRouter from "hapi-router"
 import hapiInert from "@hapi/inert"
 import { connect } from "mongoose"
 import { ALL_ROUTES } from "./routes";
