@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { OperatorDto } from "../../../shared/operators";
+import { OperatorDto } from "shared/operators";
 import { mapToObject } from "../utility/types";
 
 export const Operator = model('Operator', new Schema({
@@ -7,11 +7,11 @@ export const Operator = model('Operator', new Schema({
   name: { type: String, required: true },
   role: { type: String, required: true },
   svg: {
+    required: true,
     type: new Schema({
       contents: { type: String, required: true },
       attributes: { type: Map, of: String, required: true }
-    }),
-    required: true
+    })
   },
 }, {
   virtuals: {
