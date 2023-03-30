@@ -4,6 +4,7 @@ import type { LayerDto, MapId } from "shared/maps";
 import MapLayer from "@/components/map/MapLayer.vue";
 import type { Dimensions } from "shared/types";
 import { computed } from "vue";
+import { CONSTANTS } from "@/constants";
 
 const props = defineProps<{
   mapId: MapId,
@@ -18,9 +19,12 @@ const extraLayers = computed(() => props.layers.slice(1))
 </script>
 
 <template>
-  <div class="w-full h-screen flex flex-row bg-bank-0 bg-no-repeat bg-black"
+  <div class="w-full h-screen flex flex-row bg-no-repeat bg-black"
        :class="{ 'cursor-move': isDragging }"
-       :style="`background-position: left ${-position.x}px top ${-position.y}px`"
+       :style="{
+          'background-position': `left ${-position.x}px top ${-position.y}px`,
+          'background-image': `url('${CONSTANTS.BASE_URL}/assets/maps/${mapId}/${props.layers[0].id}')`,
+        }"
        @mousedown="startDrag"
        @mouseup="endDrag"
        @mouseleave="endDrag"

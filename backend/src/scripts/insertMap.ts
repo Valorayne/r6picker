@@ -13,16 +13,13 @@ async function execute() {
     y: 178
   }
   const data: Map = {
-    id: "bank",
-    name: "Bank",
+    id: "bartlett",
+    name: "Bartlett University",
     dimensions: {
       width: 2560,
       height: 1440
     },
     layers: [{
-      id: 0,
-      name: "Basement"
-    }, {
       id: 1,
       name: "1st Floor",
       offset

@@ -1,7 +1,7 @@
 import { Dimensions, Position } from "./types";
 
 export type MapId = (typeof ALL_MAP_IDS)[number]
-export const ALL_MAP_IDS = ["bank"] as const
+export const ALL_MAP_IDS = ["bank", "bartlett"] as const
 
 export type MapDto = {
   id: MapId,
