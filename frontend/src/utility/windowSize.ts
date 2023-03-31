@@ -1,5 +1,5 @@
 import { onMounted, onUnmounted, ref } from "vue";
-import type { Position } from "@/utility/types";
+import type { Position } from "shared/types";
 
 export function useWindowSize() {
   const windowSize = ref<Position>({ x: window.innerWidth, y: window.innerHeight })

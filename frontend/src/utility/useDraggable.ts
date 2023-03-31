@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
 import { useWindowSize } from "@/utility/windowSize";
 import { clamp } from "@/utility/numbers";
-import type { Dimensions, Position } from "@/utility/types";
+import type { Dimensions, Position } from "shared/types";
 
 export type UseDraggableProps = {
   dimensions: Dimensions,
@@ -41,6 +41,10 @@ export function useDraggable({
     isDragging,
     startDrag,
     endDrag,
-    moveMouse
+    moveMouse,
+    reset: () => {
+      position.value = { x: 0, y: 0 }
+      isDragging.value = false
+    }
   }
 }

@@ -15,12 +15,12 @@ const attackerSelected = (id: AttackerId) => selectedAttacker.value = id
 
 const attackers = computed(() =>
     selectedAttacker.value && props.round
-        ? props.round.teamMates.concat([selectedAttacker.value])
+        ? props.round.teamMates.concat([selectedAttacker.value!])
         : props.round?.teamMates ?? []
 )
 const selectionConfirmed = () => {
   if (!selectedAttacker.value) return
-  emit('selectionConfirmed', selectedAttacker.value)
+  emit('selectionConfirmed', selectedAttacker.value!)
   selectedAttacker.value = undefined
 }
 </script>

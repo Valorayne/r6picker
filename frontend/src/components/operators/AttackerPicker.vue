@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import OperatorIcon from "@/components/operators/OperatorIcon.vue"
-import { useOperatorsQuery } from "@/queries/operators";
 import type { AttackerId } from "shared/operators";
 import Overlay from "@/components/utility/Overlay.vue";
 import R6Button from "@/components/utility/R6Button.vue";
+import { useOperatorsQuery } from "@/queries/operators";
 
 defineProps<{
   selectedAttacker: AttackerId | undefined
@@ -20,7 +20,7 @@ const { data: attackers } = useOperatorsQuery("attackers")
 
 <template>
   <div>
-    <Overlay v-if="attackers.length">
+    <Overlay v-if="attackers?.length">
       <div class="grid gap-1 grid-cols-7">
         <OperatorIcon
             v-for="attacker in attackers"

@@ -1,21 +1,22 @@
 import { CONSTANTS } from "@/constants";
-import { useQuery } from "vue-query";
+import { useMutation, useQuery } from "vue-query";
 import type { RoundDto, RoundResultDto } from "shared/rounds";
+import type { Query } from "@/utility/types";
 
-export function useNewRoundQuery() {
+export function useNewRoundQuery(): Query<RoundDto> {
   return useQuery(['rounds', 'new'],
-    () => fetch(`${CONSTANTS.BASE_URL}/rounds/new`).then<RoundDto>(response => response.json()), {
-      refetchOnWindowFocus: false
-    })
+    () => fetch(`${CONSTANTS.BASE_URL}/rounds/new`).then(response => response.json()),
+    { refetchOnWindowFocus: false }
+  ) as Query<RoundDto>
 }
 
-export function storeRoundResult(result: RoundResultDto) {
-  return fetch(`${CONSTANTS.BASE_URL}/rounds/results`, {
+export function useStoreRoundResultMutation() {
+  return useMutation<Response, Error, RoundResultDto>((result: RoundResultDto) => fetch(`${CONSTANTS.BASE_URL}/rounds/results`, {
     method: "POST",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(result)
-  })
+  }))
 }

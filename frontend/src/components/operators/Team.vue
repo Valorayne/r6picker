@@ -5,7 +5,7 @@ import { times } from "lodash-es";
 import { computed } from "vue";
 
 const props = defineProps<{
-  operators: (OperatorDto | {})[]
+  operators: (OperatorDto | Record<string, unknown>)[]
 }>()
 const fullTeam = computed(() => props.operators.concat(times(5 - props.operators.length, () => ({}))))
 </script>
