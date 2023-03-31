@@ -20,6 +20,8 @@ export const ALL_DEFENDER_IDS = [
 ] as const
 
 export type OperatorId = AttackerId | DefenderId
+export const ALL_OPERATOR_IDS = [...ALL_ATTACKER_IDS, ...ALL_DEFENDER_IDS] as const
+
 export type OperatorDto = {
   id: OperatorId
   name: string

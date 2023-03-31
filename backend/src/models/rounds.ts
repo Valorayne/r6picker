@@ -1,9 +1,9 @@
 import { RoundDto, RoundResultDto } from "shared/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { random } from "lodash";
-import { RoundResult } from "../entities/roundResult";
+import { RoundResults } from "../entities/roundResult";
 import { drawRandom } from "../utility/random";
-import { ALL_MAP_IDS } from "../../../shared/maps";
+import { ALL_MAP_IDS } from "shared/maps";
 
 export function createNewRound(): RoundDto {
   return {
@@ -14,6 +14,6 @@ export function createNewRound(): RoundDto {
 }
 
 export async function storeRoundResult(result: RoundResultDto) {
-  await new RoundResult(result).save()
+  await RoundResults.create(result)
   return result
 }

@@ -1,31 +1,26 @@
-import { model, Schema } from "mongoose";
-import { OperatorDto } from "shared/operators";
-import { mapToObject } from "../utility/types";
+import { ALL_OPERATOR_IDS, OperatorId } from "shared/operators";
+import { getModelForClass, prop } from "@typegoose/typegoose";
 
-export const Operator = model('Operator', new Schema({
-  id: { type: String, required: true, index: true },
-  name: { type: String, required: true },
-  role: { type: String, required: true },
-  svg: {
-    required: true,
-    type: new Schema({
-      contents: { type: String, required: true },
-      attributes: { type: Map, of: String, required: true }
-    })
-  },
-}, {
-  virtuals: {
-    operatorDto: {
-      get(): OperatorDto {
-        return {
-          id: this.id,
-          name: this.name,
-          svg: {
-            contents: this.svg.contents,
-            attributes: mapToObject(this.svg.attributes)
-          }
-        }
-      }
-    }
-  }
-}))
+class OperatorSvg {
+  @prop({ required: true })
+  public contents!: string
+
+  @prop({ required: true, type: () => String })
+  public attributes!: Map<string, string>
+}
+
+export class Operator {
+  @prop({ required: true, index: true, enum: ALL_OPERATOR_IDS })
+  public id!: OperatorId
+
+  @prop({ required: true })
+  public name!: string
+
+  @prop({ required: true })
+  public role!: string
+
+  @prop({ required: true })
+  public svg!: OperatorSvg
+}
+
+export const Operators = getModelForClass(Operator)

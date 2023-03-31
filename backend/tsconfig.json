@@ -12,7 +12,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "./lib",
-    "rootDir": "./src",
+    "rootDirs": [
+      "./src",
+      "../shared"
+    ],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
