@@ -6,3 +6,5 @@ export type Query<Result, InitiallyUndefined = true> = {
   isError: Ref<boolean>
   error: Ref<Error>
 }
+
+export type QueryParam<Result> = Result | Ref<Result>
