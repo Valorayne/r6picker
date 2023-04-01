@@ -17,7 +17,7 @@ withDefaults(defineProps<{
 
 <template>
   <div
-      class="fixed bg-no-repeat w-full h-screen transition-[background-image]"
+      class="fixed bg-no-repeat w-full h-screen"
       :class="{
           'opacity-0': selectedLayer !== layerId,
           'opacity-100': selectedLayer === layerId
