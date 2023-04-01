@@ -8,6 +8,5 @@ import '../index.css'
 const app = createApp(App)
 
 app.use(createPinia())
-// noinspection TypeScriptValidateTypes
-app.use(VueQueryPlugin)
+VueQueryPlugin.install(app)
 app.mount('#app')

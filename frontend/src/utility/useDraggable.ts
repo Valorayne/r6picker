@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useWindowSize } from "@/utility/windowSize";
 import { clamp } from "@/utility/numbers";
 import type { Dimensions, Position } from "shared/types";
@@ -21,18 +21,18 @@ export function useDraggable({
   const startDrag = () => isDragging.value = true
   const endDrag = () => isDragging.value = false
 
-  const limits = computed(() => ({
+  const limits = {
     minX: -maxHorizontalOffset,
     maxX: width + maxHorizontalOffset - windowSize.value.x,
     minY: -maxVerticalOffset,
     maxY: height + maxVerticalOffset - windowSize.value.y
-  }))
+  }
 
   const moveMouse = (e: MouseEvent) => {
     if (!isDragging.value) return
     position.value = {
-      x: clamp(limits.value.minX, limits.value.maxX, position.value.x - e.movementX),
-      y: clamp(limits.value.minY, limits.value.maxY, position.value.y - e.movementY)
+      x: clamp(limits.minX, limits.maxX, position.value.x - e.movementX),
+      y: clamp(limits.minY, limits.maxY, position.value.y - e.movementY)
     }
   }
 
@@ -42,9 +42,5 @@ export function useDraggable({
     startDrag,
     endDrag,
     moveMouse,
-    reset: () => {
-      position.value = { x: 0, y: 0 }
-      isDragging.value = false
-    }
   }
 }

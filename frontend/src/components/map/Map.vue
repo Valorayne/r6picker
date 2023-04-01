@@ -3,28 +3,29 @@ import type { MapId } from "shared/maps";
 import { computed, ref, watch } from "vue";
 import MapRenderer from "@/components/map/MapRenderer.vue";
 import MapLayerSelector from "@/components/map/MapLayerSelector.vue";
+import QueryLoader from "@/components/utility/QueryLoader.vue"
 import { useMapQuery } from "@/queries/maps";
 
 const props = defineProps<{ mapId: MapId }>()
-const { data } = await useMapQuery(computed(() => props.mapId))
+const mapQuery = useMapQuery(computed(() => props.mapId))
 
 const selectedLayer = ref(0)
 const layerClicked = (layerId: number) => selectedLayer.value = layerId
-watch(() => data?.value?.layers, (layers) => selectedLayer.value = layers?.[0]?.id ?? 0, { deep: true })
+watch(() => mapQuery.data?.value?.layers, (layers) => selectedLayer.value = layers?.[0]?.id ?? 0, { deep: true })
 
 </script>
 
 <template>
-  <div v-if="data">
+  <QueryLoader :query="mapQuery" v-slot="map">
     <MapRenderer
         :map-id="mapId"
-        :layers="data.layers"
+        :layers="map.layers"
         :selected-layer="selectedLayer"
-        :dimensions="data.dimensions"/>
+        :dimensions="map.dimensions"/>
     <MapLayerSelector
         :selected-layer="selectedLayer"
         @selectLayer="layerClicked"
-        :layers="data.layers"
+        :layers="map.layers"
         class="fixed right-4 bottom-4"/>
-  </div>
+  </QueryLoader>
 </template>
