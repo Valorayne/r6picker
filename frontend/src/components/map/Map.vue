@@ -6,6 +6,7 @@ import MapLayerSelector from "@/components/map/MapLayerSelector.vue";
 import QueryLoader from "@/components/utility/QueryLoader.vue"
 import { useMapQuery } from "@/queries/maps";
 import type { ObjectiveDto } from "shared/objectives";
+import { findLayersWithObjectives } from "@/queries/operators";
 
 const props = defineProps<{
   mapId: MapId
@@ -15,9 +16,11 @@ const mapQuery = useMapQuery(computed(() => props.mapId))
 
 const selectedLayer = ref(2)
 const layerClicked = (layerId: number) => selectedLayer.value = layerId
-watch(() => mapQuery.data?.value?.layers, (layers) => selectedLayer.value = layers?.[0]?.id ?? 0, { immediate: true })
 
 const objective = computed(() => mapQuery.data.value?.objectives?.find((o: ObjectiveDto) => o.id === props.objectiveId))
+const layersWithObjectives = computed(() => objective.value ? findLayersWithObjectives(objective.value) : [])
+
+watch(layersWithObjectives, (layers) => selectedLayer.value = layers[0], { immediate: true })
 
 </script>
 
@@ -34,6 +37,7 @@ const objective = computed(() => mapQuery.data.value?.objectives?.find((o: Objec
         :selected-layer="selectedLayer"
         @selectLayer="layerClicked"
         :layers="map.layers"
+        :objective="objective"
         class="fixed right-4 bottom-4"/>
   </QueryLoader>
 </template>
