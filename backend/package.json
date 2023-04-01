@@ -23,8 +23,7 @@
   "scripts": {
     "watch": "npx nodemon",
     "start": "npx ts-node src/index.ts",
-    "update-operators": "npx ts-node src/scripts/updateOperators.ts",
-    "insert-map": "npx ts-node src/scripts/insertMap.ts"
+    "update-operators": "npx ts-node src/scripts/updateOperators.ts"
   },
   "main": "lib/index.js"
 }

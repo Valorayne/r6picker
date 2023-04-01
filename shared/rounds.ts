@@ -1,12 +1,13 @@
-import { MapId } from "./maps";
-import { AttackerId, DefenderId } from "./operators";
+import type { MapId } from "./maps";
+import type { AttackerId, DefenderId } from "./operators";
 
 export type RoundDto = {
   map: MapId
   teamMates: AttackerId[]
   defenders: DefenderId[]
+  objectiveId: string
 }
 
-export type RoundResultDto = RoundDto & {
+export type RoundResultDto = Omit<RoundDto, "objectiveId"> & {
   selected: AttackerId
 }

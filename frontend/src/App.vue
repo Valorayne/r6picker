@@ -2,12 +2,13 @@
 import Round from "@/components/rounds/Round.vue";
 import { useNewRoundQuery, useStoreRoundResultMutation } from "@/queries/rounds";
 import type { AttackerId } from "shared/operators";
+import { omit } from "lodash-es";
 
 const { data: round, refetch } = useNewRoundQuery()
 const { mutateAsync: storeRoundResult } = useStoreRoundResultMutation()
 
 const confirmSelection = (selected: AttackerId) => {
-  storeRoundResult({ ...round!.value, selected }).then(() => refetch.value())
+  storeRoundResult({ ...omit(round!.value, "objectiveId"), selected }).then(() => refetch.value())
 }
 </script>
 

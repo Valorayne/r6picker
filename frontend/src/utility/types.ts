@@ -5,6 +5,7 @@ export type Query<Result, InitiallyUndefined = true> = {
   isLoading: Ref<boolean>
   isError: Ref<boolean>
   error: Ref<Error>
+  refetch: Ref<() => void>
 }
 
 export type QueryParam<Result> = Result | Ref<Result>

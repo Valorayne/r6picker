@@ -23,7 +23,7 @@ withDefaults(defineProps<{
           'opacity-100': selectedLayer === layerId
       }"
       :style="{
-          'background-position': `left ${824-position.x}px top ${250-position.y}px`,
+          'background-position': `left ${offset.x-position.x}px top ${offset.y-position.y}px`,
           'background-image': `url('${CONSTANTS.BASE_URL}/assets/maps/${mapId}/${layerId}')`,
       }"
   />

@@ -1,0 +1,11 @@
+import { createApp } from "/node_modules/.vite/deps/vue.js?v=41a6c999";
+import { createPinia } from "/node_modules/.vite/deps/pinia.js?v=41a6c999";
+import { VueQueryPlugin } from "/node_modules/.vite/deps/vue-query.js?v=41a6c999";
+import App from "/src/App.vue?t=1680367351143";
+import "/index.css?t=1680367351143";
+const app = createApp(App);
+app.use(createPinia());
+VueQueryPlugin.install(app);
+app.mount("#app");
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1haW4udHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlQXBwIH0gZnJvbSAndnVlJ1xyXG5pbXBvcnQgeyBjcmVhdGVQaW5pYSB9IGZyb20gJ3BpbmlhJ1xyXG5pbXBvcnQgeyBWdWVRdWVyeVBsdWdpbiB9IGZyb20gXCJ2dWUtcXVlcnlcIlxyXG5cclxuaW1wb3J0IEFwcCBmcm9tICcuL0FwcC52dWUnXHJcbmltcG9ydCAnLi4vaW5kZXguY3NzJ1xyXG5cclxuY29uc3QgYXBwID0gY3JlYXRlQXBwKEFwcClcclxuXHJcbmFwcC51c2UoY3JlYXRlUGluaWEoKSlcclxuVnVlUXVlcnlQbHVnaW4uaW5zdGFsbChhcHApXHJcbmFwcC5tb3VudCgnI2FwcCcpXHJcbiJdLCJtYXBwaW5ncyI6IkFBQUEsU0FBUyxpQkFBaUI7QUFDMUIsU0FBUyxtQkFBbUI7QUFDNUIsU0FBUyxzQkFBc0I7QUFFL0IsT0FBTyxTQUFTO0FBQ2hCLE9BQU87QUFFUCxNQUFNLE1BQU0sVUFBVSxHQUFHO0FBRXpCLElBQUksSUFBSSxZQUFZLENBQUM7QUFDckIsZUFBZSxRQUFRLEdBQUc7QUFDMUIsSUFBSSxNQUFNLE1BQU07IiwibmFtZXMiOltdfQ==
