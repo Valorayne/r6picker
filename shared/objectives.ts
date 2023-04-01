@@ -1,4 +1,4 @@
-import { Position } from "./types";
+import type { Position } from "./types";
 
 export const ALL_OBJECTIVE_TYPES = ["bomb", "secureArea", "hostage"] as const
 export type ObjectiveType = ObjectiveDto["type"]

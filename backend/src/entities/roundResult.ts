@@ -24,6 +24,9 @@ export class RoundResult {
     enum: ALL_DEFENDER_IDS
   })
   defenders!: string[]
+
+  @prop({ required: true })
+  objectiveId!: string
 }
 
 export const RoundResults = getModelForClass(RoundResult)

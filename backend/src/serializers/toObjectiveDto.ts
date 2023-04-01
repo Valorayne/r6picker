@@ -3,25 +3,23 @@ import { BombObjective, HostageObjective, Objective, SecureAreaObjective } from 
 import { DocumentType } from "@typegoose/typegoose";
 
 export function toObjectiveDto(objective: Objective): ObjectiveDto {
+  return {
+    type: objective.type,
+    id: (objective as DocumentType<Objective>).id,
+    ...getSpecificPart(objective)
+  } as ObjectiveDto
+}
+
+function getSpecificPart(objective: Objective) {
   switch (objective.type) {
-    case "secureArea":
-      return {
-        type: "hostage",
-        id: (objective as DocumentType<Objective>).id,
-        location: (objective as SecureAreaObjective).location,
-      }
     case "bomb":
       return {
-        type: "bomb",
-        id: (objective as DocumentType<Objective>).id,
         a: (objective as BombObjective).a,
         b: (objective as BombObjective).b,
       }
+    case "secureArea":
+      return { location: (objective as SecureAreaObjective).location }
     case "hostage":
-      return {
-        type: "hostage",
-        id: (objective as DocumentType<Objective>).id,
-        location: (objective as HostageObjective).location,
-      }
+      return { location: (objective as HostageObjective).location }
   }
 }

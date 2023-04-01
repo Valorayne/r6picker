@@ -8,6 +8,6 @@ export type RoundDto = {
   objectiveId: string
 }
 
-export type RoundResultDto = Omit<RoundDto, "objectiveId"> & {
+export type RoundResultDto = RoundDto & {
   selected: AttackerId
 }

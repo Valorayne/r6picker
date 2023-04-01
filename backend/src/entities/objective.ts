@@ -1,27 +1,8 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { ALL_OBJECTIVE_TYPES, ObjectiveType } from "shared/objectives";
+import { Location } from "./types";
 
-class Position {
-  @prop({ required: true })
-  x!: number
-
-  @prop({ required: true })
-  y!: number
-}
-
-class Location {
-  @prop({ required: true })
-  layer!: number
-
-  @prop({ required: true })
-  position!: Position
-}
-
-@modelOptions({
-  schemaOptions: {
-    discriminatorKey: "type"
-  }
-})
+@modelOptions({ schemaOptions: { discriminatorKey: "type" } })
 export class Objective {
   @prop({ required: true, enum: ALL_OBJECTIVE_TYPES })
   public type!: ObjectiveType

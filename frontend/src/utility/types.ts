@@ -1,4 +1,4 @@
-import { Ref } from "vue";
+import type { Ref } from "vue";
 
 export type Query<Result, InitiallyUndefined = true> = {
   data: InitiallyUndefined extends true ? Ref<Result | undefined> : Ref<Result>
@@ -9,3 +9,7 @@ export type Query<Result, InitiallyUndefined = true> = {
 }
 
 export type QueryParam<Result> = Result | Ref<Result>
+
+export function unwrap<Result>(param: QueryParam<Result>): Result {
+  return (param as Ref<Result>).value ?? param as Result
+}

@@ -1,5 +1,5 @@
-import { Dimensions, Position } from "./types";
-import { ObjectiveDto } from "./objectives";
+import type { Dimensions, Position } from "./types";
+import type { ObjectiveDto } from "./objectives";
 
 export type MapId = (typeof ALL_MAP_IDS)[number]
 export const ALL_MAP_IDS = ["bank", "bartlett"] as const

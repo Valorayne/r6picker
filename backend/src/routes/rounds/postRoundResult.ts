@@ -17,7 +17,8 @@ const route: ServerRoute = {
           Joi.string().valid(...ALL_ATTACKER_IDS).required()),
         defenders: Joi.array().max(5).required().items(
           Joi.string().valid(...ALL_DEFENDER_IDS).required()),
-        selected: Joi.string().valid(...ALL_ATTACKER_IDS).required()
+        selected: Joi.string().valid(...ALL_ATTACKER_IDS).required(),
+        objectiveId: Joi.string().required()
       })
     }
   }
