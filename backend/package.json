@@ -1,5 +1,5 @@
 {
-  "name": "r6picker",
+  "name": "r6picker-backend",
   "version": "1.0.0",
   "dependencies": {
     "@hapi/hapi": "^21.3.1",

@@ -1,0 +1,10 @@
+{
+  "name": "r6picker",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "scripts": {
+    "start-backend": "cd backend && npm i && npm run start",
+    "start-frontent": "cd frontend && npm i && npm run dev"
+  }
+}
