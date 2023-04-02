@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { ObjectiveDto } from "shared/objectives";
 import ObjectiveMarker from "@/components/map/ObjectiveMarker.vue";
-import type { Position } from "shared/types";
+import type { PositionDto } from "shared/types";
 
 defineProps<{
   objective: ObjectiveDto
   selectedLayer: number
-  mapPosition: Position
+  mapPosition: PositionDto
 }>()
 
 </script>

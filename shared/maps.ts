@@ -1,5 +1,4 @@
-import type { Dimensions, Position } from "./types";
-import type { ObjectiveDto } from "./objectives";
+import type { DimensionsDto, PositionDto } from "./types";
 
 export type MapId = (typeof ALL_MAP_IDS)[number]
 export const ALL_MAP_IDS = ["bank", "bartlett"] as const
@@ -7,13 +6,12 @@ export const ALL_MAP_IDS = ["bank", "bartlett"] as const
 export type MapDto = {
   id: MapId,
   name: string,
-  dimensions: Dimensions
+  dimensions: DimensionsDto
   layers: LayerDto[]
-  objectives: ObjectiveDto[]
 }
 
 export type LayerDto = {
   id: number
   name: string
-  offset?: Position
+  offset?: PositionDto
 }

@@ -3,14 +3,14 @@ import { useDraggable } from "@/utility/useDraggable";
 import type { LayerDto, MapId } from "shared/maps";
 import type { ObjectiveDto } from "shared/objectives";
 import MapLayer from "@/components/map/MapLayer.vue";
-import type { Dimensions } from "shared/types";
+import type { DimensionsDto } from "shared/types";
 import { computed } from "vue";
 import { CONSTANTS } from "@/constants";
 import Objective from "@/components/map/Objective.vue";
 
 const props = defineProps<{
   mapId: MapId,
-  dimensions: Dimensions,
+  dimensions: DimensionsDto,
   layers: LayerDto[]
   objective: ObjectiveDto
   selectedLayer: number

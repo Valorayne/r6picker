@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Position } from "shared/types";
+import type { PositionDto } from "shared/types";
 import type { MapId } from "shared/maps";
 import { CONSTANTS } from "@/constants";
 
 withDefaults(defineProps<{
   layerId: number,
-  offset?: Position,
-  position: Position
+  offset?: PositionDto,
+  position: PositionDto
   selectedLayer: number
   mapId: MapId
 }>(), {

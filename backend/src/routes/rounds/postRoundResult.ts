@@ -4,6 +4,15 @@ import { ALL_MAP_IDS } from "shared/maps";
 import { storeRoundResult } from "../../models/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { RoundResultDto } from "shared/rounds";
+import { ALL_OBJECTIVE_TYPES } from "../../../../shared/objectives";
+
+const locationSchema = Joi.object({
+  layer: Joi.number().required(),
+  position: Joi.object({
+    x: Joi.number().required(),
+    y: Joi.number().required()
+  }).required()
+})
 
 const route: ServerRoute = {
   method: "POST",
@@ -18,7 +27,12 @@ const route: ServerRoute = {
         defenders: Joi.array().max(5).required().items(
           Joi.string().valid(...ALL_DEFENDER_IDS).required()),
         selected: Joi.string().valid(...ALL_ATTACKER_IDS).required(),
-        objectiveId: Joi.string().required()
+        objective: Joi.object({
+          type: Joi.string().valid(...ALL_OBJECTIVE_TYPES).required(),
+          a: locationSchema,
+          b: locationSchema,
+          location: locationSchema
+        }).required()
       })
     }
   }

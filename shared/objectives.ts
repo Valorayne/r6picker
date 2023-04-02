@@ -1,4 +1,4 @@
-import type { Position } from "./types";
+import type { PositionDto } from "./types";
 
 export const ALL_OBJECTIVE_TYPES = ["bomb", "secureArea", "hostage"] as const
 export type ObjectiveType = ObjectiveDto["type"]
@@ -24,5 +24,5 @@ export type HostageObjectiveDto = {
 
 export type LocationDto = {
   layer: number
-  position: Position
+  position: PositionDto
 }

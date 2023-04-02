@@ -10,16 +10,14 @@ import { findLayersWithObjectives } from "@/queries/operators";
 
 const props = defineProps<{
   mapId: MapId
-  objectiveId: string
+  objective: ObjectiveDto
 }>()
 const mapQuery = useMapQuery(computed(() => props.mapId))
 
 const selectedLayer = ref(2)
 const layerClicked = (layerId: number) => selectedLayer.value = layerId
 
-const objective = computed(() => mapQuery.data.value?.objectives?.find((o: ObjectiveDto) => o.id === props.objectiveId))
-const layersWithObjectives = computed(() => objective.value ? findLayersWithObjectives(objective.value) : [])
-
+const layersWithObjectives = computed(() => findLayersWithObjectives(props.objective))
 watch(layersWithObjectives, (layers) => selectedLayer.value = layers[0], { immediate: true })
 
 </script>
@@ -27,7 +25,6 @@ watch(layersWithObjectives, (layers) => selectedLayer.value = layers[0], { immed
 <template>
   <QueryLoader :query="mapQuery" v-slot="map">
     <MapRenderer
-        v-if="objectiveId"
         :map-id="mapId"
         :layers="map.layers"
         :objective="objective"

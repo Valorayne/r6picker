@@ -1,6 +1,7 @@
 import { ALL_MAP_IDS, MapId } from "shared/maps";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { getModelForClass, prop } from "@typegoose/typegoose";
+import { Objective, ObjectiveDiscriminators } from "./objective";
 
 export class RoundResult {
   @prop({ required: true, index: true, enum: ALL_MAP_IDS })
@@ -25,8 +26,8 @@ export class RoundResult {
   })
   defenders!: string[]
 
-  @prop({ required: true })
-  objectiveId!: string
+  @prop({ required: true, type: () => Objective, discriminators: () => ObjectiveDiscriminators })
+  objective!: Objective
 }
 
 export const RoundResults = getModelForClass(RoundResult)
