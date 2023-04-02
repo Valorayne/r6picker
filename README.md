@@ -49,14 +49,13 @@ Eventually, choosing an operator presents the player with the next randomly gene
 MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run start-backend
 ```
 
-Operator and map data is drawn from the database. Operator data can automatically be imported via the following command
+Operator and map data is drawn from the database. If using your own database, it's easy to populate it using the
+following commands:
 
 ```
 MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-operators
+MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-maps
 ```
-
-Unfortunately, there is currently no way to automatically import map data. Thus it's necessary to add this data
-manually.
 
 ### Frontend
 

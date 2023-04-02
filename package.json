@@ -5,7 +5,9 @@
   },
   "scripts": {
     "start-backend": "cd backend && npm i && npm run start",
-    "start-frontend": "cd frontend && npm i && npm run dev"
+    "start-frontend": "cd frontend && npm i && npm run dev",
+    "update-operators": "cd backend && npm i && npm run update-operators",
+    "update-maps": "cd backend && npm i && npm run update-maps"
   },
   "engines": {
     "npm": ">=8.0.0 <9.0.0",
