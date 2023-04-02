@@ -35,6 +35,35 @@ Eventually, choosing an operator presents the player with the next randomly gene
 
 ![screenshot-2.png](frontend/public/screenshot-2.png)
 
+## Setup
+
+### Requirements
+- NPM
+- Your own Mongo DB
+
+### Backend
+```
+cd backend
+npm i
+MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run start
+```
+
+Operator and map data is drawn from the database. Operator data can automatically be imported via the 
+following command 
+```
+MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-operators
+```
+Unfortunately, there is currently no way to automatically import map data. Thus it's necessary to add this data manually.
+
+### Frontend
+```
+cd frontend
+npm i
+npm run dev
+```
+
+Now the app should be running at http://localhost:5173/
+
 ## Credits
 
 - Map graphics are taken from https://www.r6maps.com/
