@@ -4,7 +4,6 @@ import { ALL_MAP_IDS } from "shared/maps";
 import { storeRoundResult } from "../../models/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { RoundResultDto } from "shared/rounds";
-import { ALL_OBJECTIVE_TYPES } from "../../../../shared/objectives";
 
 const locationSchema = Joi.object({
   layer: Joi.number().required(),
@@ -12,6 +11,22 @@ const locationSchema = Joi.object({
     x: Joi.number().required(),
     y: Joi.number().required()
   }).required()
+}).required()
+
+const bombObjectiveSchema = Joi.object({
+  type: Joi.string().valid("bomb").required(),
+  a: locationSchema,
+  b: locationSchema,
+})
+
+const hostageObjectiveSchema = Joi.object({
+  type: Joi.string().valid("hostage").required(),
+  location: locationSchema,
+})
+
+const secureAreaObjectiveSchema = Joi.object({
+  type: Joi.string().valid("secureArea").required(),
+  location: locationSchema,
 })
 
 const route: ServerRoute = {
@@ -27,12 +42,11 @@ const route: ServerRoute = {
         defenders: Joi.array().max(5).required().items(
           Joi.string().valid(...ALL_DEFENDER_IDS).required()),
         selected: Joi.string().valid(...ALL_ATTACKER_IDS).required(),
-        objective: Joi.object({
-          type: Joi.string().valid(...ALL_OBJECTIVE_TYPES).required(),
-          a: locationSchema,
-          b: locationSchema,
-          location: locationSchema
-        }).required()
+        objective: Joi.alternatives([
+          bombObjectiveSchema,
+          hostageObjectiveSchema,
+          secureAreaObjectiveSchema
+        ]).required()
       })
     }
   }

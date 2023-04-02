@@ -14,9 +14,9 @@ const props = defineProps<{
 const { data: allDefenderIcons } = useOperatorsQuery("defenders")
 const { data: allAttackerIcons } = useOperatorsQuery("attackers")
 
-const findOperators = (ids: OperatorId[], dtos?: OperatorDto[]) => dtos?.length ? ids.map(id => dtos.find(a => a.id === id)) : []
-const attackerIcons = computed(() => findOperators(props.attackers, allAttackerIcons.value))
-const defenderIcons = computed(() => findOperators(props.defenders, allDefenderIcons.value))
+const pickOperatorIcons = (ids: OperatorId[], dtos?: OperatorDto[]) => dtos?.length ? ids.map(id => dtos.find(a => a.id === id)) : []
+const attackerIcons = computed(() => pickOperatorIcons(props.attackers, allAttackerIcons.value))
+const defenderIcons = computed(() => pickOperatorIcons(props.defenders, allDefenderIcons.value))
 </script>
 
 <template>

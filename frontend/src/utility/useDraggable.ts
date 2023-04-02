@@ -14,9 +14,9 @@ export function useDraggable({
   maxHorizontalOffset = 500,
   maxVerticalOffset = 300
 }: UseDraggableProps) {
-  const position = ref<PositionDto>({ x: 0, y: 0 })
-  const isDragging = ref(false)
   const windowSize = useWindowSize()
+  const position = ref<PositionDto>({ x: (width - windowSize.value.x) / 2, y: (height - windowSize.value.y) / 2 })
+  const isDragging = ref(false)
 
   const startDrag = () => isDragging.value = true
   const endDrag = () => isDragging.value = false

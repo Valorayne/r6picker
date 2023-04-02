@@ -18,8 +18,6 @@ export async function createNewRound(): Promise<RoundDto> {
 }
 
 export async function storeRoundResult(result: RoundResultDto) {
-
-
   await RoundResults.create(result)
   return result
 }
