@@ -9,7 +9,7 @@ const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
 
 async function runServer() {
   const server = Hapi.server({
-    port: 3000,
+    port: 5100,
     host: 'localhost',
     routes: { cors: true }
   });

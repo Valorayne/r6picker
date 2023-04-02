@@ -1,8 +1,9 @@
 # R6 Picker
 
-A simple tool aiming to help train the thought process behind picking *Rainbow Six Siege* operators (specifically
-attackers) based on intel about enemy operators, sites and reinforced walls. For now it's more of an experiment, but it
-might prove useful at some point.
+A simple tool aiming to help train the thought process behind
+picking [Rainbow Six Siege](https://www.ubisoft.com/en-gb/game/rainbow-six/siege) operators (specifically attackers)
+based on intel about enemy operators, sites and reinforced walls. For now it's more of an experiment, but it might prove
+useful at some point.
 
 ## Features
 
@@ -38,31 +39,32 @@ Eventually, choosing an operator presents the player with the next randomly gene
 ## Setup
 
 ### Requirements
+
 - NPM
 - Your own Mongo DB
 
 ### Backend
+
 ```
-cd backend
-npm i
-MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run start
+MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run start-backend
 ```
 
-Operator and map data is drawn from the database. Operator data can automatically be imported via the 
-following command 
+Operator and map data is drawn from the database. Operator data can automatically be imported via the following command
+
 ```
 MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-operators
 ```
-Unfortunately, there is currently no way to automatically import map data. Thus it's necessary to add this data manually.
+
+Unfortunately, there is currently no way to automatically import map data. Thus it's necessary to add this data
+manually.
 
 ### Frontend
+
 ```
-cd frontend
-npm i
-npm run dev
+npm run start-frontend
 ```
 
-Now the app should be running at http://localhost:5173/
+Now the app should be running at http://localhost:5000/
 
 ## Credits
 
