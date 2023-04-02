@@ -6,5 +6,9 @@
   "scripts": {
     "start-backend": "cd backend && npm i && npm run start",
     "start-frontent": "cd frontend && npm i && npm run dev"
+  },
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=16.0.0 <17.0.0"
   }
 }
