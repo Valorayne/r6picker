@@ -1,5 +1,5 @@
 import { OperatorId } from "shared/operators";
-import { setupCollection } from "./db";
+import { registerCollection } from "./db";
 
 export type OperatorEntity = {
   id: OperatorId
@@ -11,4 +11,4 @@ export type OperatorEntity = {
   }
 }
 
-export const Operators = setupCollection<OperatorEntity>({ name: "operators" })
+export const Operators = registerCollection<OperatorEntity>({ name: "operators" })

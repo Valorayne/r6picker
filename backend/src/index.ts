@@ -1,8 +1,10 @@
 import Hapi from "@hapi/hapi"
 import hapiInert from "@hapi/inert"
 import { ALL_ROUTES } from "./routes";
+import { setupCollections } from "./entities/db";
 
 async function runServer() {
+  await setupCollections()
   const server = Hapi.server({
     port: 5100,
     host: 'localhost',

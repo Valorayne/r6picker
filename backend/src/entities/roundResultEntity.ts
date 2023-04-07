@@ -1,6 +1,6 @@
 import { MapId } from "shared/maps";
 import { Objective } from "./objective";
-import { setupCollection } from "./db";
+import { registerCollection } from "./db";
 
 export type RoundResultEntity = {
   map: MapId
@@ -10,4 +10,4 @@ export type RoundResultEntity = {
   objective: Objective
 }
 
-export const RoundResults = setupCollection<RoundResultEntity>({ name: "roundResults" })
+export const RoundResults = registerCollection<RoundResultEntity>({ name: "roundResults" })

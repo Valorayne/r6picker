@@ -1,7 +1,7 @@
-import { MapId } from "shared/maps";
+import { ALL_MAP_IDS, MapId } from "shared/maps";
 import { Objective } from "./objective";
 import { Dimensions, Position } from "./types";
-import { setupCollection } from "./db";
+import { registerCollection } from "./db";
 
 export type MapEntity = {
   id: MapId
@@ -17,4 +17,14 @@ export type Layer = {
   offset?: Position
 }
 
-export const Maps = setupCollection<MapEntity>({ name: "maps" })
+export const Maps = registerCollection<MapEntity>({
+  name: "maps",
+  validator: {
+    properties: {
+      id: {
+        type: "string",
+        enum: ALL_MAP_IDS as unknown as string[]
+      }
+    }
+  }
+})
