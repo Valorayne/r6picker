@@ -1,11 +1,6 @@
 import Hapi from "@hapi/hapi"
 import hapiInert from "@hapi/inert"
-import { connect } from "mongoose"
 import { ALL_ROUTES } from "./routes";
-
-const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
-  throw "Missing ENV var 'MONGO_ATLAS_CONNECTION'"
-})()
 
 async function runServer() {
   const server = Hapi.server({
@@ -15,7 +10,6 @@ async function runServer() {
   });
   await server.register(hapiInert)
   await server.route(ALL_ROUTES)
-  await connect(connectionString)
   await server.start();
   return server
 }

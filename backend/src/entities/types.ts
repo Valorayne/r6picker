@@ -1,25 +1,14 @@
-import { prop } from "@typegoose/typegoose";
-
-export class Dimensions {
-  @prop({ required: true })
-  public width!: number
-
-  @prop({ required: true })
-  public height!: number
+export type Dimensions = {
+  width: number
+  height: number
 }
 
-export class Position {
-  @prop({ required: true })
-  x!: number
-
-  @prop({ required: true })
-  y!: number
+export type Position = {
+  x: number
+  y: number
 }
 
-export class Location {
-  @prop({ required: true })
-  layer!: number
-
-  @prop({ required: true })
-  position!: Position
+export type Location = {
+  layer: number
+  position: Position
 }

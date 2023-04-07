@@ -1,32 +1,25 @@
-import { connect } from "mongoose"
-import { Map, Maps } from "../entities/map";
+import { Layer, MapEntity, Maps } from "../entities/mapEntity";
 import exportedMapData from "./data/maps.json"
-import { Layer } from "../entities/layer";
 import { Objective } from "../entities/objective";
 import { Dimensions, Location, Position } from "../entities/types";
-import { MapId } from "../../../shared/maps";
-
-const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
-  throw "Missing ENV var 'MONGO_ATLAS_CONNECTION'"
-})()
+import { MapId } from "shared/maps";
+import { ObjectId } from "mongodb";
 
 async function execute() {
-  await connect(connectionString)
-
   for (const mapData of exportedMapData) {
     const data = toMapEntityData(mapData)
-    await Maps.updateOne({ id: data.id }, data, { upsert: true })
+    await Maps.updateOne({ id: data.id }, { $set: data }, { upsert: true })
   }
 }
 
-function toMapEntityData(data: any): Map {
+function toMapEntityData(data: any): MapEntity {
   return {
     id: data.id as MapId,
     name: data.name,
     dimensions: toDimensionsEntityData(data.dimensions),
     layers: data.layers.map(toLayerEntityData),
     objectives: data.objectives.map(toObjectiveEntityData)
-  } as Map
+  } as MapEntity
 }
 
 function toDimensionsEntityData(data: any): Dimensions {
@@ -45,12 +38,23 @@ function toLayerEntityData(data: any): Layer {
 }
 
 function toObjectiveEntityData(data: any): Objective {
-  return {
-    type: data.type,
-    a: data.a ? toLocationEntityData(data.a) : undefined,
-    b: data.b ? toLocationEntityData(data.b) : undefined,
-    location: data.location ? toLocationEntityData(data.location) : undefined,
-  } as Objective
+  switch (data.type as Objective["type"]) {
+    case "bomb": {
+      return {
+        type: "bomb",
+        _id: new ObjectId(data._id.$oid),
+        a: toLocationEntityData(data.a),
+        b: toLocationEntityData(data.b)
+      }
+    }
+    case "hostage":
+    case "secureArea":
+      return {
+        type: data.type,
+        _id: new ObjectId(data._id.$oid),
+        location: toLocationEntityData(data.location),
+      }
+  }
 }
 
 function toLocationEntityData(data: any): Location {

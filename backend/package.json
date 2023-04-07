@@ -7,18 +7,16 @@
     "cors": "^2.8.5",
     "joi": "^17.9.1",
     "lodash": "^4.17.21",
-    "mongoose": "^7.0.3",
     "r6operators": "^2.4.0",
     "shared": "file:../shared",
     "typescript": "^5.0.2",
-    "@typegoose/typegoose": "^11.0.0",
-    "@hapi/boom": "^10.0.1"
+    "@hapi/boom": "^10.0.1",
+    "mongodb": "^5.2.0"
   },
   "devDependencies": {
     "@types/hapi": "^18.0.8",
     "@types/joi": "^17.2.3",
-    "@types/lodash": "^4.14.191",
-    "@types/mongoose": "^5.11.97"
+    "@types/lodash": "^4.14.191"
   },
   "scripts": {
     "watch": "npx nodemon",

@@ -1,14 +1,14 @@
 import { RoundDto, RoundResultDto } from "shared/rounds";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
 import { random } from "lodash";
-import { RoundResults } from "../entities/roundResult";
+import { RoundResults } from "../entities/roundResultEntity";
 import { drawRandom } from "../utility/random";
-import { Map, Maps } from "../entities/map";
-import { DocumentType } from "@typegoose/typegoose";
+import { MapEntity, Maps } from "../entities/mapEntity";
 import { toObjectiveDto } from "../serializers/toObjectiveDto";
+import { ObjectId } from "mongodb";
 
 export async function createNewRound(): Promise<RoundDto> {
-  const map: DocumentType<Map> = (await Maps.aggregate([{ $sample: { size: 1 } }]))[0]
+  const map = (await Maps.aggregate<MapEntity>([{ $sample: { size: 1 } }]).toArray())[0]
   return {
     map: map.id,
     teamMates: drawRandom(ALL_ATTACKER_IDS, 4),
@@ -18,6 +18,12 @@ export async function createNewRound(): Promise<RoundDto> {
 }
 
 export async function storeRoundResult(result: RoundResultDto) {
-  await RoundResults.create(result)
+  await RoundResults.insertOne({
+    ...result,
+    objective: {
+      ...result.objective,
+      _id: new ObjectId(result.objective.id)
+    }
+  })
   return result
 }

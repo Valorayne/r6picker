@@ -1,23 +1,19 @@
 import type { PositionDto } from "./types";
 
-export const ALL_OBJECTIVE_TYPES = ["bomb", "secureArea", "hostage"] as const
-export type ObjectiveType = ObjectiveDto["type"]
+export type ObjectiveDto = BombObjectiveDto | SecureAreaObjectiveDto | HostageObjectiveDto
 
-export type ObjectiveDto = { id: string }
-  & (BombObjectiveDto | SecureAreaObjectiveDto | HostageObjectiveDto)
-
-export type BombObjectiveDto = {
+export type BombObjectiveDto = { id: string } & {
   type: "bomb"
   a: LocationDto
   b: LocationDto
 }
 
-export type SecureAreaObjectiveDto = {
+export type SecureAreaObjectiveDto = { id: string } & {
   type: "secureArea"
   location: LocationDto
 }
 
-export type HostageObjectiveDto = {
+export type HostageObjectiveDto = { id: string } & {
   type: "hostage"
   location: LocationDto
 }
