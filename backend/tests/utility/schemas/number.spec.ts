@@ -1,5 +1,5 @@
 import { Schemas, TypeFromSchema } from "../../../src/utility/schemas";
-import { expect } from "chai";
+import { expectValue } from "../utility";
 
 describe("schemas", () => {
   describe("number", () => {
@@ -18,10 +18,8 @@ describe("schemas", () => {
       // @ts-expect-error
       assertType<NumberType>(undefined)
 
-      expect(schema.toJsonSchema()).to.deep.equal({
-        type: "number",
-        required: true
-      })
+      expectValue(42).toMatch(schema)
+      expectValue(undefined).not.toMatch(schema)
     })
 
     it("supports optionals", () => {
@@ -33,26 +31,24 @@ describe("schemas", () => {
       assertType<NumberType>("hello")
       assertType<NumberType>(undefined)
 
-      expect(schema.toJsonSchema()).to.deep.equal({
-        type: "number",
-        required: false
-      })
+      expectValue(42).toMatch(schema)
+      expectValue(undefined).toMatch(schema)
     })
 
     it("supports minimum", () => {
-      expect(Schemas.number().min(42).toJsonSchema()).to.deep.equal({
-        type: "number",
-        required: true,
-        minimum: 42
-      })
+      const schema = Schemas.number().min(42)
+
+      expectValue(41).not.toMatch(schema)
+      expectValue(42).toMatch(schema)
+      expectValue(43).toMatch(schema)
     })
 
     it("supports maximum", () => {
-      expect(Schemas.number().max(42).toJsonSchema()).to.deep.equal({
-        type: "number",
-        required: true,
-        maximum: 42
-      })
+      const schema = Schemas.number().max(42)
+
+      expectValue(41).toMatch(schema)
+      expectValue(42).toMatch(schema)
+      expectValue(43).not.toMatch(schema)
     })
   })
 })

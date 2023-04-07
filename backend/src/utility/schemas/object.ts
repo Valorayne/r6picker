@@ -6,9 +6,9 @@ type ObjectSchemaProps<T extends Record<string, Schema>> = {
   properties: T
 }
 
-export class ObjectSchema<T extends Record<string, Schema>, O extends boolean> extends Schema<ObjectSchemaProps<T>, O> {
+export class ObjectSchema<T extends Record<string, Schema>, IsOptional extends boolean> extends Schema<ObjectSchemaProps<T>, IsOptional> {
 
-  constructor(props: ObjectSchemaProps<T>, options: SchemaOptions<O>) {
+  constructor(props: ObjectSchemaProps<T>, options: SchemaOptions<IsOptional>) {
     super(props, options)
   }
 
