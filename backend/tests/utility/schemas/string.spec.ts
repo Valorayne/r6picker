@@ -7,9 +7,9 @@ describe("schemas", () => {
     it("is required by default", () => {
       const schema = Schemas.string()
 
-      expectTypeOf("hello").toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf(3).not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf(undefined).not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<string>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<undefined>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<number>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue("hello").toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
@@ -18,9 +18,10 @@ describe("schemas", () => {
     it("supports optionals", () => {
       const schema = Schemas.string().optional()
 
-      expectTypeOf("hello").toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf(3).not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf(undefined).toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<string | undefined>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<string>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<undefined>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<number>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue("hello").toMatch(schema)
       expectValue(undefined).toMatch(schema)

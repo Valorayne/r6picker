@@ -2,15 +2,15 @@ import { Schema, SchemaOptions } from "./index";
 import { JSONSchema4 } from "json-schema";
 import { mapValues } from "lodash";
 
-export type SubSchemas<T> = {
+export type PropertySchemas<T> = {
   [Key in keyof T]: T[Key] extends Schema<infer S, infer O> ? Schema<S, O> : never
 }
 
-type ObjectSchemaProps<T extends SubSchemas<T>> = {
+type ObjectSchemaProps<T extends PropertySchemas<T>> = {
   properties: T
 }
 
-export class ObjectSchema<T extends SubSchemas<T>, IsOptional extends boolean> extends Schema<ObjectSchemaProps<T>, IsOptional> {
+export class ObjectSchema<T extends PropertySchemas<T>, IsOptional extends boolean> extends Schema<ObjectSchemaProps<T>, IsOptional> {
 
   constructor(props: ObjectSchemaProps<T>, options: SchemaOptions<IsOptional>) {
     super(props, options)
