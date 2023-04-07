@@ -3,6 +3,8 @@ import { ObjectSchema } from "./schemas/object";
 import { Schema } from "./schemas/index"
 import { NumberSchema } from "./schemas/number";
 
+export { Schema }
+
 export namespace Schemas {
 
   export function object<T extends Record<string, Schema> = Record<string, Schema>>(properties: T): ObjectSchema<T, false> {

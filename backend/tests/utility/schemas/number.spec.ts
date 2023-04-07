@@ -1,22 +1,15 @@
 import { Schemas, TypeFromSchema } from "../../../src/utility/schemas";
 import { expectValue } from "../utility";
+import { expectTypeOf } from "expect-type";
 
 describe("schemas", () => {
   describe("number", () => {
-
-    function assertType<T>(arg: T): void {
-      // only used for type checking
-    }
-
     it("is required by default", () => {
       const schema = Schemas.number()
-      type NumberType = TypeFromSchema<typeof schema>
 
-      assertType<NumberType>(3)
-      // @ts-expect-error
-      assertType<NumberType>("hello")
-      // @ts-expect-error
-      assertType<NumberType>(undefined)
+      expectTypeOf(3).toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf("hello").not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf(undefined).not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue(42).toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
@@ -24,12 +17,10 @@ describe("schemas", () => {
 
     it("supports optionals", () => {
       const schema = Schemas.number().optional()
-      type NumberType = TypeFromSchema<typeof schema>
 
-      assertType<NumberType>(3)
-      // @ts-expect-error
-      assertType<NumberType>("hello")
-      assertType<NumberType>(undefined)
+      expectTypeOf(3).toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf("hello").not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf(undefined).toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue(42).toMatch(schema)
       expectValue(undefined).toMatch(schema)
