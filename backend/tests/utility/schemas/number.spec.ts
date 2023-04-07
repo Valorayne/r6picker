@@ -1,4 +1,5 @@
 import { Schemas, TypeFromSchema } from "../../../src/utility/schemas";
+import { expect } from "chai";
 
 describe("schemas", () => {
   describe("number", () => {
@@ -7,7 +8,7 @@ describe("schemas", () => {
       // only used for type checking
     }
 
-    it("gets resolved to number", () => {
+    it("is required by default", () => {
       const schema = Schemas.number()
       type NumberType = TypeFromSchema<typeof schema>
 
@@ -16,6 +17,11 @@ describe("schemas", () => {
       assertType<NumberType>("hello")
       // @ts-expect-error
       assertType<NumberType>(undefined)
+
+      expect(schema.toJsonSchema()).to.deep.equal({
+        type: "number",
+        required: true
+      })
     })
 
     it("supports optionals", () => {
@@ -26,6 +32,27 @@ describe("schemas", () => {
       // @ts-expect-error
       assertType<NumberType>("hello")
       assertType<NumberType>(undefined)
+
+      expect(schema.toJsonSchema()).to.deep.equal({
+        type: "number",
+        required: false
+      })
+    })
+
+    it("supports minimum", () => {
+      expect(Schemas.number().min(42).toJsonSchema()).to.deep.equal({
+        type: "number",
+        required: true,
+        minimum: 42
+      })
+    })
+
+    it("supports maximum", () => {
+      expect(Schemas.number().max(42).toJsonSchema()).to.deep.equal({
+        type: "number",
+        required: true,
+        maximum: 42
+      })
     })
   })
 })

@@ -1,23 +1,44 @@
-import { Schema } from "./index";
+import { Schema, SchemaOptions } from "./index";
+import { JSONSchema4 } from "json-schema";
 
-export class NumberSchema<O extends boolean> implements Schema {
+type NumberSchemaProps = Partial<{
+  minimum: number
+  maximum: number
+}>
 
-  constructor(
-    private readonly minimum: number | undefined,
-    private readonly maximum: number | undefined,
-    private readonly isOptional: O
-  ) {
+export class NumberSchema<IsOptional extends boolean> extends Schema<NumberSchemaProps, IsOptional> {
+
+  constructor(props: NumberSchemaProps, options: SchemaOptions<IsOptional>) {
+    super(props, options)
   }
 
-  public min(minimum: number): NumberSchema<O> {
-    return new NumberSchema<O>(minimum, this.maximum, this.isOptional)
+  public min(minimum: number): NumberSchema<IsOptional> {
+    return new NumberSchema({
+      ...this.props,
+      minimum
+    }, this.options)
   }
 
-  public max(maximum: number): NumberSchema<O> {
-    return new NumberSchema<O>(this.minimum, maximum, this.isOptional)
+  public max(maximum: number): NumberSchema<IsOptional> {
+    return new NumberSchema({
+      ...this.props,
+      maximum
+    }, this.options)
   }
 
   public optional(): NumberSchema<true> {
-    return new NumberSchema<true>(this.minimum, this.maximum, true)
+    return new NumberSchema(this.props, {
+      ...this.options,
+      isOptional: true
+    })
+  }
+
+  public toJsonSchema(): JSONSchema4 {
+    return {
+      type: "number",
+      ...(this.props.minimum ? { minimum: this.props.minimum } : {}),
+      ...(this.props.maximum ? { maximum: this.props.maximum } : {}),
+      required: !this.options.isOptional
+    }
   }
 }
