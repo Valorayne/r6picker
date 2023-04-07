@@ -18,7 +18,7 @@ export class StringSchema<T extends string, O extends boolean> extends Schema<St
     })
   }
 
-  public valid<S extends string>(values: readonly S[]): StringSchema<S, O> {
+  public enum<S extends string>(values: readonly S[]): StringSchema<S, O> {
     return new StringSchema({
       ...this.props,
       validValues: values
