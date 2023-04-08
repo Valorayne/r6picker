@@ -22,7 +22,4 @@ const MapSchema = Schemas.object({
   objectives: Schemas.array(ObjectiveSchema)
 })
 
-export const Maps = registerCollection<MapEntity>({
-  name: "maps",
-  validator: MapSchema.toJsonSchema()
-})
+export const Maps = registerCollection("maps", MapSchema)

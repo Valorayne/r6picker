@@ -3,9 +3,8 @@ import { ObjectiveSchema } from "./objective";
 import { registerCollection } from "./db";
 import { Schemas, TypeFromSchema } from "shared/schemas/schemas";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/types/operators";
-import { WithoutId } from "mongodb";
 
-export type RoundResultEntity = WithoutId<TypeFromSchema<typeof RoundResultSchema>>
+export type RoundResultEntity = TypeFromSchema<typeof RoundResultSchema>
 export const RoundResultSchema = Schemas.object({
   _id: Schemas.objectId().optional(),
   map: Schemas.string().enum(...ALL_MAP_IDS),
@@ -15,7 +14,4 @@ export const RoundResultSchema = Schemas.object({
   objective: ObjectiveSchema
 })
 
-export const RoundResults = registerCollection<RoundResultEntity>({
-  name: "roundResults",
-  validator: RoundResultSchema.toJsonSchema()
-})
+export const RoundResults = registerCollection("roundResults", RoundResultSchema)

@@ -13,7 +13,4 @@ const OperatorSchema = Schemas.object({
   })
 })
 
-export const Operators = registerCollection<OperatorEntity>({
-  name: "operators",
-  validator: OperatorSchema.toJsonSchema()
-})
+export const Operators = registerCollection("operators", OperatorSchema)

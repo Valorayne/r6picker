@@ -1,6 +1,7 @@
 import { Collection, CreateIndexesOptions, IndexDirection, IndexSpecification, MongoClient, WithId } from "mongodb";
 import { JSONSchema4 } from "json-schema"
 import { isArray } from "lodash";
+import { Schema, TypeFromSchema } from "shared/schemas/schemas";
 
 const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
   throw "Missing ENV var 'MONGO_ATLAS_CONNECTION'"
@@ -9,39 +10,37 @@ const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
 const client = new MongoClient(connectionString)
 const db = client.db("test")
 
-type CreateCollectionProps<T> = {
-  name: string
-} & CollectionConfig<T>
-
 type Index<T> = Partial<Record<keyof WithId<T> | string, IndexDirection>>
 
 type CollectionConfig<T> = {
-  validator?: JSONSchema4
+  jsonSchema: JSONSchema4
   indexes?: (Index<T> | [Index<T>, CreateIndexesOptions])[]
 }
 
 const COLLECTION_CONFIGS: Record<string, CollectionConfig<unknown>> = {}
 
-export function registerCollection<T extends Record<string, unknown>>({
-  name,
-  ...config
-}: CreateCollectionProps<T>): Collection<T> {
-  COLLECTION_CONFIGS[name] = config
-  return db.collection<T>(name)
+export function registerCollection<TSchema extends Schema<unknown, false>,
+  TResult = TypeFromSchema<TSchema> extends Record<string, unknown> ? Collection<TypeFromSchema<TSchema>> : never>(
+  name: string, schema: TSchema, config?: Omit<CollectionConfig<TSchema>, "jsonSchema">): TResult {
+  COLLECTION_CONFIGS[name] = {
+    jsonSchema: schema.toJsonSchema(),
+    ...config
+  }
+  return db.collection(name) as TResult
 }
 
 export async function setupCollections() {
   for (const [name, config] of Object.entries(COLLECTION_CONFIGS)) {
-    if (config.validator) await applyValidator(name, config.validator)
+    if (config.jsonSchema) await applyValidator(name, config.jsonSchema)
     if (config.indexes) await applyIndexes(name, config.indexes)
   }
 }
 
-async function applyValidator(name: string, validator: JSONSchema4) {
+async function applyValidator(name: string, schema: JSONSchema4) {
   await db.command({
     collMod: name,
     validator: {
-      $jsonSchema: validator
+      $jsonSchema: schema
     }
   })
 }
