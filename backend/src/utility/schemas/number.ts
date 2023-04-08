@@ -1,7 +1,7 @@
 import { Schema, SchemaOptions } from "./index";
 import { JSONSchema4 } from "json-schema";
 
-type NumberSchemaProps = Partial<{
+export type NumberSchemaProps = Partial<{
   minimum: number
   maximum: number
 }>

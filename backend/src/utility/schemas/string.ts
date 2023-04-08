@@ -1,7 +1,7 @@
 import { Schema, SchemaOptions } from "./index";
 import { JSONSchema4 } from "json-schema";
 
-type StringSchemaProps<T> = Partial<{
+export type StringSchemaProps<T> = Partial<{
   validValues: readonly T[]
 }>
 

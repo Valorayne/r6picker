@@ -1,15 +1,15 @@
-import { StringSchema } from "./schemas/string";
-import { ObjectSchema, PropertySchemas } from "./schemas/object";
+import { StringSchema, StringSchemaProps } from "./schemas/string";
+import { ObjectSchema, ObjectSchemaProps, PropertySchemas } from "./schemas/object";
 import { Schema } from "./schemas/index"
-import { NumberSchema } from "./schemas/number";
-import { ArraySchema, ElementSchemas } from "./schemas/array";
+import { NumberSchema, NumberSchemaProps } from "./schemas/number";
+import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./schemas/array";
 
 export { Schema }
 
 export namespace Schemas {
 
-  export function object<T extends PropertySchemas<T>>(properties: T): ObjectSchema<T, false> {
-    return new ObjectSchema({ properties }, { isOptional: false })
+  export function object<T extends PropertySchemas<T>>(properties: T): ObjectSchema<T, false, false> {
+    return new ObjectSchema({ properties, additionalProperties: false }, { isOptional: false })
   }
 
   export function array<T extends ElementSchemas<T>>(subSchema: T): ArraySchema<T, false> {
@@ -25,19 +25,21 @@ export namespace Schemas {
   }
 }
 
-export type TypeFromSchema<T extends Schema<unknown, boolean>> =
-  | (T extends StringSchema<infer S, infer O> ? (O extends true ? S | undefined : S) : never)
-  | (T extends NumberSchema<infer O> ? (O extends true ? number | undefined : number) : never)
+type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<infer P, boolean>
+  ? (
+    | (P extends StringSchemaProps<infer S> ? S : never)
+    | (P extends NumberSchemaProps ? number : never)
+    | (P extends ArraySchemaProps<infer S> ? TypeFromSchema<S>[] : never)
 
-  | (T extends ArraySchema<infer S, infer O> ? (
-  O extends true
-    ? TypeFromSchema<S>[] | undefined
-    : TypeFromSchema<S>[]
-  ) : never)
-  
-  | (T extends ObjectSchema<infer S, infer O> ? (
-  O extends true
-    ? { [Key in keyof S]: TypeFromSchema<S[Key]> } | undefined
-    : { [Key in keyof S]: TypeFromSchema<S[Key]> }
-  ) : never)
+    | (
+    P extends ObjectSchemaProps<infer S, infer A> ? (
+      A extends true
+        ? { [Key in keyof S]: TypeFromSchema<S[Key]> }
+        : { [Key in keyof S]: TypeFromSchema<S[Key]> }
+      ) : never)
+
+    ) : never
+
+export type TypeFromSchema<T extends Schema<unknown, boolean>> = T extends Schema<infer P, infer O> ?
+  (O extends true ? TypeFromSubSchema<T> | undefined : TypeFromSubSchema<T>) : never
 

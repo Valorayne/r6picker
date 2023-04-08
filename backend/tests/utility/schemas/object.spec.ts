@@ -5,31 +5,50 @@ import { expectTypeOf } from "expect-type";
 describe("schemas", () => {
   describe("object", () => {
     it("is required by default", () => {
-      const schema = Schemas.object({})
+      const schema = Schemas.object({
+        test: Schemas.string()
+      })
 
-      expectTypeOf<{}>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ test: string }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+
+      /*
+      TODO make work
+      expectTypeOf<{ test: string, amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+       */
+
+      expectTypeOf<{}>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<undefined>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf<string>().not.toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<string>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
-      expectValue({}).toMatch(schema)
       expectValue({ test: "value" }).toMatch(schema)
+      expectValue({}).not.toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
     })
 
     it("supports optionals", () => {
-      const schema = Schemas.object({}).optional()
+      const schema = Schemas.object({
+        test: Schemas.string()
+      }).optional()
 
-      expectTypeOf<{} | undefined>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf<{}>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ test: string } | undefined>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+
+      /*
+      TODO make work
+      expectTypeOf<{ test: string, amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      */
+
+      expectTypeOf<{}>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<undefined>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      expectTypeOf<number>().not.toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<string>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
-      expectValue({}).toMatch(schema)
       expectValue({ test: "value" }).toMatch(schema)
+      expectValue({}).not.toMatch(schema)
       expectValue(undefined).toMatch(schema)
     })
 
-    it("supports custom properties", () => {
+    it("supports specifying properties", () => {
       const schema = Schemas.object({
         hello: Schemas.string(),
         amount: Schemas.number(),
@@ -41,6 +60,17 @@ describe("schemas", () => {
         amount: number
         optional: number | undefined
       }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ hello: string }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+
+      /*
+      TODO make work
+      expectTypeOf<{
+        hello: string
+        amount: number
+        optional: number | undefined
+        additional: number
+      }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+       */
 
       expectValue({ hello: "world", amount: 42 }).toMatch(schema)
       expectValue({ hello: "world", amount: 42, optional: 1 }).toMatch(schema)
@@ -74,6 +104,21 @@ describe("schemas", () => {
       expectValue({ how: { deep: { can: { you: "go" } } } }).toMatch(schema)
       expectValue({ how: { deep: { can: { you: "leave" } } } }).not.toMatch(schema)
       expectValue({ how: {} }).not.toMatch(schema)
+      expectValue({}).not.toMatch(schema)
+    })
+
+    it("supports additional properties", () => {
+      const schema = Schemas.object({
+        hello: Schemas.string(),
+      }).additionalProperties()
+
+      expectTypeOf<{ hello: string }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ hello: string, amount: number }>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
+
+      expectValue({ hello: "world", amount: 42 }).toMatch(schema)
+      expectValue({ hello: "world", amount: 42, optional: 1 }).toMatch(schema)
+      expectValue({ hello: "world" }).toMatch(schema)
+      expectValue({ amount: 42 }).not.toMatch(schema)
       expectValue({}).not.toMatch(schema)
     })
   })

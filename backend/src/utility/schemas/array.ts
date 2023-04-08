@@ -3,7 +3,7 @@ import { JSONSchema4 } from "json-schema";
 
 export type ElementSchemas<T> = Schema<unknown, boolean>
 
-type ArraySchemaProps<T extends ElementSchemas<T>> = {
+export type ArraySchemaProps<T extends ElementSchemas<T>> = {
   subSchema: T
 }
 
