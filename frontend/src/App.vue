@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Round from "@/components/rounds/Round.vue";
 import { useNewRoundQuery, useStoreRoundResultMutation } from "@/queries/rounds";
-import type { AttackerId } from "shared/operators";
+import type { AttackerId } from "shared/types/operators";
 
 const { data: round, refetch } = useNewRoundQuery()
 const { mutateAsync: storeRoundResult } = useStoreRoundResultMutation()

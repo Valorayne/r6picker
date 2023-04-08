@@ -1,9 +1,9 @@
-import type { OperatorDto, Team } from "shared/operators";
+import type { OperatorDto, Team } from "shared/types/operators";
 import { useQuery } from "vue-query";
 import { CONSTANTS } from "@/constants";
 import type { Query, QueryParam } from "@/utility/types";
 import { unwrap } from "@/utility/types";
-import type { ObjectiveDto } from "shared/objectives";
+import type { ObjectiveDto } from "shared/types/objectives";
 
 export function useOperatorsQuery(team: QueryParam<Team>): Query<OperatorDto[], false> {
   return useQuery(["operators", team],

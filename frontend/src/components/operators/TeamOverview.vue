@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import Overlay from "@/components/utility/Overlay.vue";
-import type { AttackerId, DefenderId, OperatorDto, OperatorId } from "shared/operators";
+import type { AttackerId, DefenderId, OperatorDto, OperatorId } from "shared/types/operators";
 import { useOperatorsQuery } from "@/queries/operators";
 import { computed } from "vue";
 import Team from "@/components/operators/Team.vue";

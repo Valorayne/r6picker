@@ -1,4 +1,4 @@
-import { ObjectiveDto } from "shared/objectives";
+import { ObjectiveDto } from "shared/types/objectives";
 import { Objective } from "../entities/objective";
 
 export function toObjectiveDto(objective: Objective): ObjectiveDto {

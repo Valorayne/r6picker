@@ -1,4 +1,4 @@
-import { MapDto, MapId } from "shared/maps";
+import { MapDto, MapId } from "shared/types/maps";
 import { Maps } from "../entities/mapEntity";
 import { toMapDto } from "../serializers/toMapDto";
 import { Boom } from "@hapi/boom";

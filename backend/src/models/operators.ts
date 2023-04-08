@@ -1,4 +1,4 @@
-import { OperatorDto, Team } from "shared/operators";
+import { OperatorDto, Team } from "shared/types/operators";
 import { capitalize } from "lodash";
 import { toOperatorDto } from "../serializers/toOperatorDto";
 import { Operators } from "../entities/operatorEntity";

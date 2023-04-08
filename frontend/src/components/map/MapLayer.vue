@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PositionDto } from "shared/types";
-import type { MapId } from "shared/maps";
+import type { PositionDto } from "shared/types/types";
+import type { MapId } from "shared/types/maps";
 import { CONSTANTS } from "@/constants";
 
 withDefaults(defineProps<{

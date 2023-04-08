@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { useWindowSize } from "@/utility/windowSize";
 import { clamp } from "@/utility/numbers";
-import type { DimensionsDto, PositionDto } from "shared/types";
+import type { DimensionsDto, PositionDto } from "shared/types/types";
 
 export type UseDraggableProps = {
   dimensions: DimensionsDto,

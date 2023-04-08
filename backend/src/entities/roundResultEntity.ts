@@ -1,8 +1,8 @@
-import { ALL_MAP_IDS } from "shared/maps";
+import { ALL_MAP_IDS } from "shared/types/maps";
 import { ObjectiveSchema } from "./objective";
 import { registerCollection } from "./db";
-import { Schemas, TypeFromSchema } from "../utility/schemas";
-import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "../../../shared/operators";
+import { Schemas, TypeFromSchema } from "../../../shared/src/schemas/schemas";
+import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "../../../shared/src/types/operators";
 import { WithoutId } from "mongodb";
 
 export type RoundResultEntity = WithoutId<TypeFromSchema<typeof RoundResultSchema>>

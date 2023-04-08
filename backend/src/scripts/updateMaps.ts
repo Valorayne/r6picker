@@ -2,7 +2,7 @@ import { Layer, MapEntity, Maps } from "../entities/mapEntity";
 import exportedMapData from "./data/maps.json"
 import { Objective } from "../entities/objective";
 import { Dimensions, Location, Position } from "../entities/types";
-import { MapId } from "shared/maps";
+import { MapId } from "shared/types/maps";
 
 async function execute() {
   for (const mapData of exportedMapData) {

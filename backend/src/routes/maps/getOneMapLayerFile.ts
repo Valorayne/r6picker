@@ -1,7 +1,7 @@
 import { ServerRoute } from "@hapi/hapi"
 import * as Path from "path";
 import Joi from "joi";
-import { ALL_MAP_IDS } from "shared/maps";
+import { ALL_MAP_IDS } from "shared/types/maps";
 
 const route: ServerRoute = {
   method: "GET",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PositionDto } from "shared/types";
+import type { PositionDto } from "shared/types/types";
 
 defineProps<{
   label: string

@@ -1,10 +1,10 @@
-import { StringSchema, StringSchemaProps } from "./schemas/string";
-import { ObjectSchema, ObjectSchemaProps, PropertySchemas } from "./schemas/object";
-import { Schema } from "./schemas/index"
-import { NumberSchema, NumberSchemaProps } from "./schemas/number";
-import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./schemas/array";
-import { UnionSchema, UnionSchemaProps } from "./schemas/union";
-import { ObjectIdSchema } from "./schemas/objectId";
+import { StringSchema, StringSchemaProps } from "./string";
+import { ObjectSchema, ObjectSchemaProps, PropertySchemas } from "./object";
+import { Schema } from "./index"
+import { NumberSchema, NumberSchemaProps } from "./number";
+import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./array";
+import { UnionSchema, UnionSchemaProps } from "./union";
+import { ObjectIdSchema } from "./objectId";
 import { ObjectId } from "mongodb";
 
 export { Schema }

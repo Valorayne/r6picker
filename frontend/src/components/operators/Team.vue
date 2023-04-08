@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { OperatorDto } from "shared/operators";
+import type { OperatorDto } from "shared/types/operators";
 import OperatorIcon from "@/components/operators/OperatorIcon.vue"
 import { times } from "lodash-es";
 import { computed } from "vue";

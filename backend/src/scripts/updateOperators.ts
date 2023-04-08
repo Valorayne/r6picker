@@ -1,7 +1,7 @@
 import { OperatorEntity, Operators } from "../entities/operatorEntity";
 import { pick } from "lodash";
 import r6operators from "r6operators";
-import { OperatorId } from "../../../shared/operators";
+import { OperatorId } from "shared/types/operators";
 
 async function execute() {
   const entityFields: (keyof OperatorEntity)[] = ["id", "name", "role", "svg"]

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { MapId } from "shared/maps";
+import type { MapId } from "shared/types/maps";
 import { computed, ref, watch } from "vue";
 import MapRenderer from "@/components/map/MapRenderer.vue";
 import MapLayerSelector from "@/components/map/MapLayerSelector.vue";
 import QueryLoader from "@/components/utility/QueryLoader.vue"
 import { useMapQuery } from "@/queries/maps";
-import type { ObjectiveDto } from "shared/objectives";
+import type { ObjectiveDto } from "shared/types/objectives";
 import { findLayersWithObjectives } from "@/queries/operators";
 
 const props = defineProps<{

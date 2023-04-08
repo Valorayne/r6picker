@@ -1,6 +1,6 @@
 import { ServerRoute } from "@hapi/hapi";
 import Joi from "joi";
-import { ALL_MAP_IDS } from "shared/maps";
+import { ALL_MAP_IDS } from "shared/types/maps";
 import { getOneMap } from "../../models/maps";
 
 const route: ServerRoute = {

@@ -1,5 +1,5 @@
 import { MapEntity } from "../entities/mapEntity"
-import { MapDto } from "shared/maps";
+import { MapDto } from "shared/types/maps";
 import { pick } from "lodash";
 import { WithId } from "mongodb";
 

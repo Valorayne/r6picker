@@ -1,4 +1,4 @@
-import { Schema } from "../../src/utility/schemas";
+import { Schema } from "../../src/schemas/schemas";
 import { validate } from "jsonschema";
 import { expect } from "chai";
 

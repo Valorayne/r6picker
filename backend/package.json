@@ -8,7 +8,7 @@
     "joi": "^17.9.1",
     "lodash": "^4.17.21",
     "r6operators": "^2.4.0",
-    "shared": "file:../shared",
+    "shared": "file:../shared/src",
     "typescript": "^5.0.2",
     "@hapi/boom": "^10.0.1",
     "mongodb": "^5.2.0",
@@ -31,7 +31,7 @@
   "scripts": {
     "watch": "npx nodemon",
     "start": "npx ts-node src/index.ts",
-    "test": "mocha --require ts-node/register tests/**/*.spec.ts",
+    "test": "mocha --require ts-node/register ../shared/tests/**/*.spec.ts",
     "update-operators": "npx ts-node src/scripts/updateOperators.ts",
     "update-maps": "npx ts-node src/scripts/updateMaps.ts"
   },

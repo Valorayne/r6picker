@@ -1,6 +1,6 @@
-import { ALL_OPERATOR_IDS } from "shared/operators";
+import { ALL_OPERATOR_IDS } from "shared/types/operators";
 import { registerCollection } from "./db";
-import { Schemas, TypeFromSchema } from "../utility/schemas";
+import { Schemas, TypeFromSchema } from "../../../shared/src/schemas/schemas";
 
 export type OperatorEntity = TypeFromSchema<typeof OperatorSchema>
 const OperatorSchema = Schemas.object({

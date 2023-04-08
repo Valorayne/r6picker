@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Overlay from "@/components/utility/Overlay.vue";
 import R6Button from "@/components/utility/R6Button.vue";
-import type { LayerDto } from "shared/maps";
-import type { ObjectiveDto } from "shared/objectives";
+import type { LayerDto } from "shared/types/maps";
+import type { ObjectiveDto } from "shared/types/objectives";
 import { computed } from "vue";
 import { findLayersWithObjectives } from "@/queries/operators";
 

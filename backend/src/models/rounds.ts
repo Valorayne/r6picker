@@ -1,5 +1,5 @@
-import { RoundDto, RoundResultDto } from "shared/rounds";
-import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/operators";
+import { RoundDto, RoundResultDto } from "shared/types/rounds";
+import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/types/operators";
 import { random } from "lodash";
 import { RoundResults } from "../entities/roundResultEntity";
 import { drawRandom } from "../utility/random";

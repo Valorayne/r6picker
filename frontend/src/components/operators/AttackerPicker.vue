@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import OperatorIcon from "@/components/operators/OperatorIcon.vue"
-import type { AttackerId } from "shared/operators";
+import type { AttackerId } from "shared/types/operators";
 import Overlay from "@/components/utility/Overlay.vue";
 import R6Button from "@/components/utility/R6Button.vue";
 import { useOperatorsQuery } from "@/queries/operators";

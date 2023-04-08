@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import type { AttackerId } from "shared/operators";
+import type { AttackerId } from "shared/types/operators";
 import AttackerPicker from "@/components/operators/AttackerPicker.vue"
 import Map from "@/components/map/Map.vue";
 import TeamOverview from "@/components/operators/TeamOverview.vue";
-import type { RoundDto } from "shared/rounds";
+import type { RoundDto } from "shared/types/rounds";
 
 const emit = defineEmits<{ (e: 'selectionConfirmed', attacker: AttackerId): void }>()
 

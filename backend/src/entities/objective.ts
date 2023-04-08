@@ -1,5 +1,5 @@
 import { LocationSchema } from "./types";
-import { Schemas, TypeFromSchema } from "../utility/schemas";
+import { Schemas, TypeFromSchema } from "shared/schemas/schemas";
 
 const BombObjectiveSchema = Schemas.object({
   id: Schemas.string(),

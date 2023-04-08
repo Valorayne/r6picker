@@ -14,8 +14,7 @@
     "outDir": "./lib",
     "rootDirs": [
       "./src",
-      "../shared/tests",
-      "../shared"
+      "./tests"
     ],
     "strict": true,
     "esModuleInterop": true,

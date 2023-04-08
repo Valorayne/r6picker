@@ -16,7 +16,7 @@
     "axios": "^1.3.4",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.32",
-    "shared": "file:../shared",
+    "shared": "file:../shared/src",
     "vue": "^3.2.47",
     "vue-query": "^1.26.0",
     "vue-router": "^4.1.6"

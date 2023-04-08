@@ -1,6 +1,6 @@
 import { CONSTANTS } from "@/constants";
 import { useMutation, useQuery } from "vue-query";
-import type { RoundDto, RoundResultDto } from "shared/rounds";
+import type { RoundDto, RoundResultDto } from "shared/types/rounds";
 import type { Query } from "@/utility/types";
 
 export function useNewRoundQuery(): Query<RoundDto> {

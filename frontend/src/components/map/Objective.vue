@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ObjectiveDto } from "shared/objectives";
+import type { ObjectiveDto } from "shared/types/objectives";
 import ObjectiveMarker from "@/components/map/ObjectiveMarker.vue";
-import type { PositionDto } from "shared/types";
+import type { PositionDto } from "shared/types/types";
 
 defineProps<{
   objective: ObjectiveDto

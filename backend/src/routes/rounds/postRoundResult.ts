@@ -1,6 +1,6 @@
 import { ServerRoute } from "@hapi/hapi"
 import { storeRoundResult } from "../../models/rounds";
-import { RoundResultDto } from "shared/rounds";
+import { RoundResultDto } from "shared/types/rounds";
 import { RoundResultSchema } from "../../entities/roundResultEntity";
 import { validateBySchema } from "../../utility/validation";
 
