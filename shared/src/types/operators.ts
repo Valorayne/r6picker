@@ -1,4 +1,4 @@
-import { Schemas, TypeFromSchema } from "../schemas/schemas";
+import { Schemas, TypeFromSchema } from "../schemas";
 
 export type Team = typeof ALL_TEAMS[number]
 export const ALL_TEAMS = ["attackers", "defenders"] as const

@@ -1,7 +1,7 @@
 import { ALL_MAP_IDS } from "./maps";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "./operators";
 import { ObjectiveDtoSchema } from "./objectives";
-import { Schemas, TypeFromSchema } from "../schemas/schemas";
+import { Schemas, TypeFromSchema } from "../schemas";
 
 const RoundDtoSchemaProperties = {
   map: Schemas.string().enum(...ALL_MAP_IDS),

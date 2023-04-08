@@ -1,7 +1,7 @@
 import { Collection, CreateIndexesOptions, IndexDirection, IndexSpecification, MongoClient, WithId } from "mongodb";
 import { JSONSchema4 } from "json-schema"
 import { isArray } from "lodash";
-import { Schema, TypeFromSchema } from "shared/schemas/schemas";
+import { Schema, TypeFromSchema } from "shared/schemas";
 
 const connectionString = process.env.MONGO_ATLAS_CONNECTION ?? (() => {
   throw "Missing ENV var 'MONGO_ATLAS_CONNECTION'"

@@ -1,5 +1,5 @@
 import { DimensionsDtoSchema, PositionDtoSchema } from "./types";
-import { Schemas, TypeFromSchema } from "../schemas/schemas";
+import { Schemas, TypeFromSchema } from "../schemas";
 
 export type MapId = (typeof ALL_MAP_IDS)[number]
 export const ALL_MAP_IDS = ["bank", "bartlett"] as const

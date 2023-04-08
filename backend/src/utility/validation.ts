@@ -1,4 +1,4 @@
-import { Schema } from "shared/schemas/schemas";
+import { Schema } from "shared/schemas";
 import { validate } from "jsonschema";
 import { Boom } from "@hapi/boom";
 

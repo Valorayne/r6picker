@@ -17,7 +17,6 @@ export async function createNewRound(): Promise<RoundDto> {
 }
 
 export async function storeRoundResult(result: RoundResultDto) {
-  await RoundResults.insertOne({ ...result, _id: undefined })
-    .catch(error => console.log(error.errInfo.details.schemaRulesNotSatisfied))
+  await RoundResults.insertOne({ ...result, _id: undefined }).catch(console.error)
   return result
 }

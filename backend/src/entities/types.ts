@@ -1,4 +1,4 @@
-import { Schemas, TypeFromSchema } from "shared/schemas/schemas";
+import { Schemas, TypeFromSchema } from "shared/schemas";
 
 export type Dimensions = TypeFromSchema<typeof DimensionsSchema>
 export const DimensionsSchema = Schemas.object({

@@ -1,4 +1,4 @@
-import { Schemas, TypeFromSchema } from "../schemas/schemas";
+import { Schemas, TypeFromSchema } from "../schemas";
 
 export type PositionDto = TypeFromSchema<typeof PositionDtoSchema>
 export const PositionDtoSchema = Schemas.object({

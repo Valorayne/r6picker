@@ -1,4 +1,4 @@
-import { Schema, SchemaOptions } from "./index";
+import { Schema, SchemaOptions } from "./schema";
 import { JSONSchema4, JSONSchema4TypeName } from "json-schema";
 import { mapValues } from "lodash";
 

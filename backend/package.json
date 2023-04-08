@@ -31,7 +31,6 @@
   "scripts": {
     "watch": "npx nodemon",
     "start": "npx ts-node src/index.ts",
-    "test": "mocha --require ts-node/register ../shared/tests/**/*.spec.ts",
     "update-operators": "npx ts-node src/scripts/updateOperators.ts",
     "update-maps": "npx ts-node src/scripts/updateMaps.ts"
   },

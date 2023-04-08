@@ -1,7 +1,7 @@
 import { ALL_MAP_IDS } from "shared/types/maps";
 import { ObjectiveSchema } from "./objective";
 import { registerCollection } from "./db";
-import { Schemas, TypeFromSchema } from "shared/schemas/schemas";
+import { Schemas, TypeFromSchema } from "shared/schemas";
 import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "shared/types/operators";
 
 export type RoundResultEntity = TypeFromSchema<typeof RoundResultSchema>

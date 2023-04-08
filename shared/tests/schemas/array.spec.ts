@@ -1,4 +1,4 @@
-import { Schemas, TypeFromSchema } from "../../src/schemas/schemas";
+import { Schemas, TypeFromSchema } from "../../src/schemas";
 import { expectValue } from "../utility";
 import { expectTypeOf } from "expect-type";
 

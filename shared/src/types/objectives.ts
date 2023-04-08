@@ -1,5 +1,5 @@
 import { LocationDtoSchema } from "./types";
-import { Schemas, TypeFromSchema } from "../schemas/schemas";
+import { Schemas, TypeFromSchema } from "../schemas";
 
 export type BombObjectiveDto = TypeFromSchema<typeof BombObjectiveDtoSchema>
 const BombObjectiveDtoSchema = Schemas.object({
