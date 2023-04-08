@@ -1,5 +1,5 @@
 import { Schema } from "../../src/utility/schemas";
-import { validate } from "json-schema";
+import { validate } from "jsonschema";
 import { expect } from "chai";
 
 export function expectValue(value: any) {

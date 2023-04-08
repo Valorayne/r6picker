@@ -3,6 +3,7 @@ import { ObjectSchema, ObjectSchemaProps, PropertySchemas } from "./schemas/obje
 import { Schema } from "./schemas/index"
 import { NumberSchema, NumberSchemaProps } from "./schemas/number";
 import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./schemas/array";
+import { UnionSchema, UnionSchemaProps } from "./schemas/union";
 
 export { Schema }
 
@@ -24,6 +25,10 @@ export namespace Schemas {
   export function number(): NumberSchema<false> {
     return new NumberSchema({}, { isOptional: false })
   }
+
+  export function union<T extends Schema<unknown, boolean>[]>(...subSchemas: [...T]): UnionSchema<T, false> {
+    return new UnionSchema({ subSchemas }, { isOptional: false })
+  }
 }
 
 type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<infer P, boolean>
@@ -39,7 +44,13 @@ type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<in
         : { [Key in keyof S]: TypeFromSchema<S[Key]> }
       ) : never)
 
+    | (
+    P extends UnionSchemaProps<infer S> ? (
+      S extends (infer U)[] ? (U extends Schema<unknown, boolean> ? TypeFromSchema<U> : never) : never
+      ) : never)
+
     ) : never
+
 
 export type TypeFromSchema<T extends Schema<unknown, boolean>> = T extends Schema<infer P, infer O> ?
   (O extends true ? TypeFromSubSchema<T> | undefined : TypeFromSubSchema<T>) : never
