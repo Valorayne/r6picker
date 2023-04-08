@@ -21,6 +21,7 @@ describe("schemas", () => {
 
       expectValue({ test: "value" }).toMatch(schema)
       expectValue({}).not.toMatch(schema)
+      expectValue(null).not.toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
     })
 
@@ -40,6 +41,7 @@ describe("schemas", () => {
 
       expectValue({ test: "value" }).toMatch(schema)
       expectValue({}).not.toMatch(schema)
+      expectValue(null).toMatch(schema)
       expectValue(undefined).toMatch(schema)
     })
 
@@ -77,7 +79,7 @@ describe("schemas", () => {
         how: Schemas.object({
           deep: Schemas.object({
             can: Schemas.object({
-              you: Schemas.string().enum(["go"])
+              you: Schemas.string().enum("go")
             })
           })
         }),

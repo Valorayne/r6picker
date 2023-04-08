@@ -12,6 +12,7 @@ describe("schemas", () => {
       expectTypeOf<string>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue(42).toMatch(schema)
+      expectValue(null).not.toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
     })
 
@@ -24,6 +25,7 @@ describe("schemas", () => {
       expectTypeOf<string>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue(42).toMatch(schema)
+      expectValue(null).toMatch(schema)
       expectValue(undefined).toMatch(schema)
     })
 

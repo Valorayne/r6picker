@@ -69,9 +69,7 @@
     "objectives": [
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "64286aca5785966e71a43c6f"
-        },
+        "id": "64286aca5785966e71a43c6f",
         "a": {
           "layer": {
             "$numberInt": "2"
@@ -101,9 +99,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "64286aca5785966e71a43c74"
-        },
+        "id": "64286aca5785966e71a43c74",
         "a": {
           "layer": {
             "$numberInt": "1"
@@ -133,9 +129,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "64286aca5785966e71a43c79"
-        },
+        "id": "64286aca5785966e71a43c79",
         "a": {
           "layer": {
             "$numberInt": "1"
@@ -165,9 +159,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "64286aca5785966e71a43c7e"
-        },
+        "id": "64286aca5785966e71a43c7e",
         "a": {
           "layer": {
             "$numberInt": "0"
@@ -198,9 +190,6 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "6425de2df207f070627e8546"
-    },
     "id": "bartlett",
     "__v": {
       "$numberInt": "0"
@@ -261,9 +250,7 @@
     "objectives": [
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "6428697d215aaa63a09d8818"
-        },
+        "id": "6428697d215aaa63a09d8818",
         "a": {
           "layer": {
             "$numberInt": "1"
@@ -293,9 +280,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "6428697d215aaa63a09d881d"
-        },
+        "id": "6428697d215aaa63a09d881d",
         "a": {
           "layer": {
             "$numberInt": "1"
@@ -325,9 +310,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "6428697d215aaa63a09d8822"
-        },
+        "id": "6428697d215aaa63a09d8822",
         "a": {
           "layer": {
             "$numberInt": "2"
@@ -357,9 +340,7 @@
       },
       {
         "type": "bomb",
-        "_id": {
-          "$oid": "6428697d215aaa63a09d8827"
-        },
+        "id": "6428697d215aaa63a09d8827",
         "a": {
           "layer": {
             "$numberInt": "2"

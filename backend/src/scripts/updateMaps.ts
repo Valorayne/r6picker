@@ -3,7 +3,6 @@ import exportedMapData from "./data/maps.json"
 import { Objective } from "../entities/objective";
 import { Dimensions, Location, Position } from "../entities/types";
 import { MapId } from "shared/maps";
-import { ObjectId } from "mongodb";
 
 async function execute() {
   for (const mapData of exportedMapData) {
@@ -42,7 +41,7 @@ function toObjectiveEntityData(data: any): Objective {
     case "bomb": {
       return {
         type: "bomb",
-        _id: new ObjectId(data._id.$oid),
+        id: data.id,
         a: toLocationEntityData(data.a),
         b: toLocationEntityData(data.b)
       }
@@ -51,7 +50,7 @@ function toObjectiveEntityData(data: any): Objective {
     case "secureArea":
       return {
         type: data.type,
-        _id: new ObjectId(data._id.$oid),
+        id: data.id,
         location: toLocationEntityData(data.location),
       }
   }

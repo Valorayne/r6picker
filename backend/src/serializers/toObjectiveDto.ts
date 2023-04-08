@@ -6,7 +6,7 @@ export function toObjectiveDto(objective: Objective): ObjectiveDto {
     case "bomb":
       return {
         type: objective.type,
-        id: objective._id.toHexString(),
+        id: objective.id,
         a: objective.a,
         b: objective.b
       }
@@ -14,7 +14,7 @@ export function toObjectiveDto(objective: Objective): ObjectiveDto {
     case "secureArea": {
       return {
         type: objective.type,
-        id: objective._id.toHexString(),
+        id: objective.id,
         location: objective.location
       }
     }

@@ -28,7 +28,7 @@ describe("schemas", () => {
     })
 
     it("supports enum", () => {
-      const schema = Schemas.string().enum(["hello", "world"])
+      const schema = Schemas.string().enum("hello", "world")
 
       expectTypeOf<"hello" | "world">().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<"hello">().toMatchTypeOf<TypeFromSchema<typeof schema>>()
@@ -41,7 +41,7 @@ describe("schemas", () => {
     })
 
     it("supports enum + optional", () => {
-      const schema = Schemas.string().enum(["hello", "world"]).optional()
+      const schema = Schemas.string().enum("hello", "world").optional()
       expectTypeOf<"hello" | "world" | undefined>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectValue(undefined).toMatch(schema)
     })

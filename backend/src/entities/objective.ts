@@ -1,20 +1,28 @@
-import { Location } from "./types";
-import { WithId } from "mongodb";
+import { LocationSchema } from "./types";
+import { Schemas, TypeFromSchema } from "../utility/schemas";
 
-export type Objective = WithId<BombObjective | HostageObjective | SecureAreaObjective>
+const BombObjectiveSchema = Schemas.object({
+  id: Schemas.string(),
+  type: Schemas.string().enum("bomb"),
+  a: LocationSchema,
+  b: LocationSchema
+})
 
-type BombObjective = {
-  type: "bomb"
-  a: Location
-  b: Location
-}
+const HostageObjectiveSchema = Schemas.object({
+  id: Schemas.string(),
+  type: Schemas.string().enum("hostage"),
+  location: LocationSchema
+})
 
-type HostageObjective = {
-  type: "hostage"
-  location: Location
-}
+const SecureAreaObjectiveSchema = Schemas.object({
+  id: Schemas.string(),
+  type: Schemas.string().enum("secureArea"),
+  location: LocationSchema
+})
 
-type SecureAreaObjective = {
-  type: "secureArea"
-  location: Location
-}
+export type Objective = TypeFromSchema<typeof ObjectiveSchema>
+export const ObjectiveSchema = Schemas.union(
+  BombObjectiveSchema,
+  HostageObjectiveSchema,
+  SecureAreaObjectiveSchema
+)

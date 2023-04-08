@@ -1,5 +1,5 @@
 import { Schema, SchemaOptions } from "./index";
-import { JSONSchema4 } from "json-schema";
+import { JSONSchema4, JSONSchema4TypeName } from "json-schema";
 
 export type ElementSchemas<T> = Schema<unknown, boolean>
 
@@ -22,9 +22,8 @@ export class ArraySchema<T extends ElementSchemas<T>, IsOptional extends boolean
 
   toJsonSchema(): JSONSchema4 {
     return {
-      type: "array",
-      items: this.props.subSchema.toJsonSchema(),
-      required: !this.options.isOptional
+      type: ["array", ...(this.options.isOptional ? ["null" as JSONSchema4TypeName] : [])],
+      items: this.props.subSchema.toJsonSchema()
     }
   }
 }

@@ -4,7 +4,7 @@ import { expect } from "chai";
 
 export function expectValue(value: any) {
   const toMatch = <O extends boolean>(schema: Schema<unknown, O>, success: boolean) => {
-    const validation = validate(value, schema.toJsonSchema())
+    const validation = validate(value, schema.toJsonSchema(), { required: !schema.isOptional() })
     expect(validation.valid).to.equal(success, JSON.stringify(validation.errors))
   }
   return {

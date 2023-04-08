@@ -1,30 +1,28 @@
-import { ALL_MAP_IDS, MapId } from "shared/maps";
-import { Objective } from "./objective";
-import { Dimensions, Position } from "./types";
+import { ALL_MAP_IDS } from "shared/maps";
+import { ObjectiveSchema } from "./objective";
+import { DimensionsSchema, PositionSchema } from "./types";
 import { registerCollection } from "./db";
+import { Schemas, TypeFromSchema } from "../utility/schemas";
+import { WithoutId } from "mongodb";
 
-export type MapEntity = {
-  id: MapId
-  name: string
-  dimensions: Dimensions
-  layers: Layer[]
-  objectives: Objective[]
-}
+export type Layer = TypeFromSchema<typeof LayerSchema>
+const LayerSchema = Schemas.object({
+  id: Schemas.number(),
+  name: Schemas.string(),
+  offset: PositionSchema.optional()
+})
 
-export type Layer = {
-  id: number
-  name: string
-  offset?: Position
-}
+export type MapEntity = WithoutId<TypeFromSchema<typeof MapSchema>>
+const MapSchema = Schemas.object({
+  _id: Schemas.objectId(),
+  id: Schemas.string().enum(...ALL_MAP_IDS),
+  name: Schemas.string(),
+  dimensions: DimensionsSchema,
+  layers: Schemas.array(LayerSchema),
+  objectives: Schemas.array(ObjectiveSchema)
+})
 
 export const Maps = registerCollection<MapEntity>({
   name: "maps",
-  validator: {
-    properties: {
-      id: {
-        type: "string",
-        enum: ALL_MAP_IDS as unknown as string[]
-      }
-    }
-  }
+  validator: MapSchema.toJsonSchema()
 })

@@ -13,6 +13,7 @@ describe("schemas", () => {
 
       expectValue([]).toMatch(schema)
       expectValue(["hello", "world"]).toMatch(schema)
+      expectValue(null).not.toMatch(schema)
       expectValue(undefined).not.toMatch(schema)
     })
 
@@ -25,6 +26,7 @@ describe("schemas", () => {
 
       expectValue([]).toMatch(schema)
       expectValue(["hello", "world"]).toMatch(schema)
+      expectValue(null).toMatch(schema)
       expectValue(undefined).toMatch(schema)
     })
 

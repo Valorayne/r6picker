@@ -4,6 +4,8 @@ import { Schema } from "./schemas/index"
 import { NumberSchema, NumberSchemaProps } from "./schemas/number";
 import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./schemas/array";
 import { UnionSchema, UnionSchemaProps } from "./schemas/union";
+import { ObjectIdSchema } from "./schemas/objectId";
+import { ObjectId } from "mongodb";
 
 export { Schema }
 
@@ -12,6 +14,10 @@ export namespace Schemas {
 
   export function object<T extends PropertySchemas<T>>(properties: T): ObjectSchema<T, false, false> {
     return new ObjectSchema({ properties, additionalProperties: false }, { isOptional: false })
+  }
+
+  export function objectId(): ObjectIdSchema<false> {
+    return new ObjectIdSchema("ObjectId", { isOptional: false })
   }
 
   export function array<T extends ElementSchemas<T>>(subSchema: T): ArraySchema<T, false> {
@@ -36,6 +42,7 @@ type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<in
     | (P extends StringSchemaProps<infer S> ? S : never)
     | (P extends NumberSchemaProps ? number : never)
     | (P extends ArraySchemaProps<infer S> ? TypeFromSchema<S>[] : never)
+    | (P extends "ObjectId" ? ObjectId : never)
 
     | (
     P extends ObjectSchemaProps<infer S, infer A> ? (

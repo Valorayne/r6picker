@@ -22,8 +22,7 @@ export class UnionSchema<T extends ElementSchemas<T>, IsOptional extends boolean
 
   toJsonSchema(): JSONSchema4 {
     return {
-      oneOf: this.props.subSchemas.map(schema => schema.toJsonSchema()),
-      required: !this.options.isOptional
+      oneOf: this.props.subSchemas.map(schema => schema.toJsonSchema())
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Schema, SchemaOptions } from "./index";
-import { JSONSchema4 } from "json-schema";
+import { JSONSchema4, JSONSchema4TypeName } from "json-schema";
 import { mapValues } from "lodash";
 
 export type PropertySchemas<T> = {
@@ -31,12 +31,17 @@ export class ObjectSchema<T extends PropertySchemas<T>, IsOptional extends boole
     }, this.options)
   }
 
+  private readonly ALL_TYPES: JSONSchema4TypeName[] = ["string", "number", "boolean", "object", "array", "null"]
+
   toJsonSchema(): JSONSchema4 {
+    const requiredProperties = Object.entries(this.props.properties)
+      .filter(([, schema]) => !(schema as ObjectSchema<{}, boolean, boolean>).options.isOptional)
+      .map(([key]) => key as string)
     return {
-      type: "object",
+      type: ["object", ...(this.options.isOptional ? ["null" as JSONSchema4TypeName] : [])],
       properties: mapValues(this.props.properties, (schema) => schema.toJsonSchema()),
-      required: !this.options.isOptional,
-      additionalProperties: this.props.additionalProperties ? { type: "any" } : false
+      ...(requiredProperties.length ? { required: requiredProperties } : {}),
+      additionalProperties: this.props.additionalProperties ? { type: this.ALL_TYPES } : false
     }
   }
 }

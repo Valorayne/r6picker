@@ -1,5 +1,5 @@
 import { Schema, SchemaOptions } from "./index";
-import { JSONSchema4 } from "json-schema";
+import { JSONSchema4, JSONSchema4TypeName } from "json-schema";
 
 export type NumberSchemaProps = Partial<{
   minimum: number
@@ -35,10 +35,9 @@ export class NumberSchema<IsOptional extends boolean> extends Schema<NumberSchem
 
   public toJsonSchema(): JSONSchema4 {
     return {
-      type: "number",
+      type: ["number", ...(this.options.isOptional ? ["null" as JSONSchema4TypeName] : [])],
       ...(this.props.minimum ? { minimum: this.props.minimum } : {}),
       ...(this.props.maximum ? { maximum: this.props.maximum } : {}),
-      required: !this.options.isOptional
     }
   }
 }
