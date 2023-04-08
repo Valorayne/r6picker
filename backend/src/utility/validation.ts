@@ -2,7 +2,7 @@ import { Schema } from "shared/schemas/schemas";
 import { validate } from "jsonschema";
 import { Boom } from "@hapi/boom";
 
-export function validateBySchema(schema: Schema<unknown, boolean>) {
+export function validateBySchema<T extends Schema<unknown, boolean>>(schema: T) {
   return async (obj: unknown) => {
     const result = validate(obj, schema.toJsonSchema(), { required: !schema.isOptional() })
     if (result.valid)

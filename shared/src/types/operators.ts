@@ -1,3 +1,5 @@
+import { Schemas, TypeFromSchema } from "../schemas/schemas";
+
 export type Team = typeof ALL_TEAMS[number]
 export const ALL_TEAMS = ["attackers", "defenders"] as const
 
@@ -22,11 +24,12 @@ export const ALL_DEFENDER_IDS = [
 export type OperatorId = AttackerId | DefenderId
 export const ALL_OPERATOR_IDS = [...ALL_ATTACKER_IDS, ...ALL_DEFENDER_IDS] as const
 
-export type OperatorDto = {
-  id: OperatorId
-  name: string
-  svg: {
-    contents: string
-    attributes: Record<string, unknown>
-  }
-}
+export type OperatorDto = TypeFromSchema<typeof OperatorDtoSchema>
+export const OperatorDtoSchema = Schemas.object({
+  id: Schemas.string().enum(...ALL_OPERATOR_IDS),
+  name: Schemas.string(),
+  svg: Schemas.object({
+    contents: Schemas.string(),
+    attributes: Schemas.object({}).additionalProperties()
+  })
+})

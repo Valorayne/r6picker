@@ -2,7 +2,7 @@ import { ALL_MAP_IDS } from "shared/types/maps";
 import { ObjectiveSchema } from "./objective";
 import { DimensionsSchema, PositionSchema } from "./types";
 import { registerCollection } from "./db";
-import { Schemas, TypeFromSchema } from "../../../shared/src/schemas/schemas";
+import { Schemas, TypeFromSchema } from "shared/schemas/schemas";
 import { WithoutId } from "mongodb";
 
 export type Layer = TypeFromSchema<typeof LayerSchema>

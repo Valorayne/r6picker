@@ -1,7 +1,6 @@
 import { ServerRoute } from "@hapi/hapi"
 import { storeRoundResult } from "../../models/rounds";
-import { RoundResultDto } from "shared/types/rounds";
-import { RoundResultSchema } from "../../entities/roundResultEntity";
+import { RoundResultDto, RoundResultDtoSchema } from "shared/types/rounds";
 import { validateBySchema } from "../../utility/validation";
 
 const route: ServerRoute = {
@@ -10,7 +9,7 @@ const route: ServerRoute = {
   handler: (request) => storeRoundResult(request.payload as RoundResultDto),
   options: {
     validate: {
-      payload: validateBySchema(RoundResultSchema)
+      payload: validateBySchema(RoundResultDtoSchema)
     }
   }
 }
