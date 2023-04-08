@@ -6,6 +6,7 @@ import { ArraySchema, ArraySchemaProps, ElementSchemas } from "./schemas/array";
 
 export { Schema }
 
+// TODO move into an Open Source NPM package
 export namespace Schemas {
 
   export function object<T extends PropertySchemas<T>>(properties: T): ObjectSchema<T, false, false> {
@@ -34,7 +35,7 @@ type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<in
     | (
     P extends ObjectSchemaProps<infer S, infer A> ? (
       A extends true
-        ? { [Key in keyof S]: TypeFromSchema<S[Key]> }
+        ? { [Key in keyof S]: TypeFromSchema<S[Key]> } & Record<string, unknown>
         : { [Key in keyof S]: TypeFromSchema<S[Key]> }
       ) : never)
 
@@ -42,4 +43,3 @@ type TypeFromSubSchema<T extends Schema<unknown, boolean>> = T extends Schema<in
 
 export type TypeFromSchema<T extends Schema<unknown, boolean>> = T extends Schema<infer P, infer O> ?
   (O extends true ? TypeFromSubSchema<T> | undefined : TypeFromSubSchema<T>) : never
-

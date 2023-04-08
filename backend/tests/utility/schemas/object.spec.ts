@@ -11,11 +11,9 @@ describe("schemas", () => {
 
       expectTypeOf<{ test: string }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{ amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      // current TypeScript shortcoming: https://github.com/microsoft/TypeScript/issues/12936#issuecomment-284590083
+      expectTypeOf<{ test: string, amount: number }>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
-      /*
-      TODO make work
-      expectTypeOf<{ test: string, amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-       */
 
       expectTypeOf<{}>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<undefined>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
@@ -33,11 +31,8 @@ describe("schemas", () => {
 
       expectTypeOf<{ test: string } | undefined>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{ amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-
-      /*
-      TODO make work
-      expectTypeOf<{ test: string, amount: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-      */
+      // current TypeScript shortcoming: https://github.com/microsoft/TypeScript/issues/12936#issuecomment-284590083
+      expectTypeOf<{ test: string, amount: number }>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectTypeOf<{}>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<undefined>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
@@ -62,15 +57,13 @@ describe("schemas", () => {
       }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{ hello: string }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
-      /*
-      TODO make work
+      // current TypeScript shortcoming: https://github.com/microsoft/TypeScript/issues/12936#issuecomment-284590083
       expectTypeOf<{
         hello: string
         amount: number
         optional: number | undefined
         additional: number
-      }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
-       */
+      }>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue({ hello: "world", amount: 42 }).toMatch(schema)
       expectValue({ hello: "world", amount: 42, optional: 1 }).toMatch(schema)
@@ -112,7 +105,7 @@ describe("schemas", () => {
         hello: Schemas.string(),
       }).additionalProperties()
 
-      expectTypeOf<{ hello: string }>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<({ hello: string } & Record<string, unknown>)>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{ hello: string, amount: number }>().toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue({ hello: "world", amount: 42 }).toMatch(schema)
