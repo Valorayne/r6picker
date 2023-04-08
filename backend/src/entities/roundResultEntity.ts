@@ -6,7 +6,7 @@ import { ALL_ATTACKER_IDS, ALL_DEFENDER_IDS } from "../../../shared/operators";
 import { WithoutId } from "mongodb";
 
 export type RoundResultEntity = WithoutId<TypeFromSchema<typeof RoundResultSchema>>
-const RoundResultSchema = Schemas.object({
+export const RoundResultSchema = Schemas.object({
   _id: Schemas.objectId().optional(),
   map: Schemas.string().enum(...ALL_MAP_IDS),
   selected: Schemas.string(),

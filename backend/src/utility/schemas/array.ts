@@ -20,7 +20,7 @@ export class ArraySchema<T extends ElementSchemas<T>, IsOptional extends boolean
     })
   }
 
-  toJsonSchema(): JSONSchema4 {
+  public toJsonSchema(): JSONSchema4 {
     return {
       type: ["array", ...(this.options.isOptional ? ["null" as JSONSchema4TypeName] : [])],
       items: this.props.subSchema.toJsonSchema()

@@ -33,7 +33,7 @@ export class ObjectSchema<T extends PropertySchemas<T>, IsOptional extends boole
 
   private readonly ALL_TYPES: JSONSchema4TypeName[] = ["string", "number", "boolean", "object", "array", "null"]
 
-  toJsonSchema(): JSONSchema4 {
+  public toJsonSchema(): JSONSchema4 {
     const requiredProperties = Object.entries(this.props.properties)
       .filter(([, schema]) => !(schema as ObjectSchema<{}, boolean, boolean>).options.isOptional)
       .map(([key]) => key as string)

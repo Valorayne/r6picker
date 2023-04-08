@@ -12,7 +12,7 @@ export abstract class Schema<Props = unknown, IsOptional extends boolean = false
   ) {
   }
 
-  abstract toJsonSchema(): JSONSchema4
+  public abstract toJsonSchema(): JSONSchema4
 
   public isOptional(): IsOptional {
     return this.options.isOptional

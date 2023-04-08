@@ -25,7 +25,7 @@ export class StringSchema<T extends string, O extends boolean> extends Schema<St
     }, this.options)
   }
 
-  toJsonSchema(): JSONSchema4 {
+  public toJsonSchema(): JSONSchema4 {
     return {
       type: ["string", ...(this.options.isOptional ? ["null" as JSONSchema4TypeName] : [])],
       ...(this.props.validValues ? { enum: this.props.validValues as unknown as string[] } : {}),

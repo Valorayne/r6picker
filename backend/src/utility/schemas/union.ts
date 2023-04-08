@@ -20,7 +20,7 @@ export class UnionSchema<T extends ElementSchemas<T>, IsOptional extends boolean
     })
   }
 
-  toJsonSchema(): JSONSchema4 {
+  public toJsonSchema(): JSONSchema4 {
     return {
       oneOf: this.props.subSchemas.map(schema => schema.toJsonSchema())
     }
