@@ -49,12 +49,11 @@ Eventually, choosing an operator presents the player with the next randomly gene
 MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run start-backend
 ```
 
-Operator and map data is drawn from the database. If using your own database, it's easy to populate it using the
-following commands:
+Operator data is drawn from the database. If using your own database, it's easy to populate it using the following
+command:
 
 ```
 MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-operators
-MONGO_ATLAS_CONNECTION='{your_mongodb_connection_string}' npm run update-maps
 ```
 
 ### Frontend

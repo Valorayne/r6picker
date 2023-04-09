@@ -45,17 +45,18 @@ describe("schemas", () => {
 
     it("can be nested with objects", () => {
       const schema = Schemas.array(Schemas.object({
-        id: Schemas.number()
+        id: Schemas.string().enum("hello", "world")
       }))
 
-      expectTypeOf<{ id: number }[]>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ id: "hello" | "world" }[]>().toEqualTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{}[]>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
+      expectTypeOf<{ id: string }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
       expectTypeOf<{ id: number }>().not.toMatchTypeOf<TypeFromSchema<typeof schema>>()
 
       expectValue([]).toMatch(schema)
       expectValue([{}]).not.toMatch(schema)
-      expectValue([{ id: 1 }, { id: 2 }]).toMatch(schema)
-      expectValue([1, 2]).not.toMatch(schema)
+      expectValue([{ id: "hello" }, { id: "world" }]).toMatch(schema)
+      expectValue(["hello", "world"]).not.toMatch(schema)
     })
   })
 })

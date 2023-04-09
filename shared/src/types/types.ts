@@ -11,9 +11,3 @@ export const DimensionsDtoSchema = Schemas.object({
   width: Schemas.number(),
   height: Schemas.number()
 })
-
-export type LocationDto = TypeFromSchema<typeof LocationDtoSchema>
-export const LocationDtoSchema = Schemas.object({
-  layer: Schemas.number(),
-  position: PositionDtoSchema
-})
