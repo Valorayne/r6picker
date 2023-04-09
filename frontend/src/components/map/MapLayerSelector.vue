@@ -2,25 +2,21 @@
 import Overlay from "@/components/utility/Overlay.vue";
 import R6Button from "@/components/utility/R6Button.vue";
 import type { LayerDto } from "shared/types/maps";
-import type { ObjectiveDto } from "shared/types/objectives";
-import { computed } from "vue";
-import { findLayersWithObjectives } from "@/queries/operators";
 
 const props = defineProps<{
   selectedLayer: number
   layers: LayerDto[]
-  objective: ObjectiveDto
+  objectiveLayerId: number
 }>()
 defineEmits<{ (e: 'selectLayer', layerId: number): void }>()
 
-const layersWithObjectives = computed(() => findLayersWithObjectives(props.objective))
 </script>
 
 <template>
   <Overlay class="flex flex-col space-y-2">
     <R6Button
         :selected="selectedLayer === layer.id"
-        :highlight="layersWithObjectives.includes(layer.id) && selectedLayer !== layer.id"
+        :highlight="objectiveLayerId === layer.id && selectedLayer !== layer.id"
         v-for="layer in layers"
         @click="() => $emit('selectLayer',layer.id)"
     >

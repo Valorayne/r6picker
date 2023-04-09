@@ -45,7 +45,7 @@ describe("schemas", () => {
 
     it("can be nested with objects", () => {
       const schema = Schemas.array(Schemas.object({
-        id: Schemas.number()
+        id: Schemas.string()
       }))
 
       expectTypeOf<{ id: number }[]>().toEqualTypeOf<TypeFromSchema<typeof schema>>()

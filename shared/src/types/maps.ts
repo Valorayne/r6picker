@@ -1,5 +1,6 @@
 import { DimensionsDtoSchema, PositionDtoSchema } from "./types";
 import { Schemas, TypeFromSchema } from "../schemas";
+import { ObjectiveDtoSchema } from "./objectives";
 
 export type MapId = (typeof ALL_MAP_IDS)[number]
 export const ALL_MAP_IDS = ["bank", "bartlett"] as const
@@ -8,7 +9,8 @@ export type LayerDto = TypeFromSchema<typeof LayerDtoSchema>
 export const LayerDtoSchema = Schemas.object({
   id: Schemas.number(),
   name: Schemas.string(),
-  offset: PositionDtoSchema.optional()
+  offset: PositionDtoSchema.optional(),
+  objectives: Schemas.array(ObjectiveDtoSchema)
 })
 
 export type MapDto = TypeFromSchema<typeof MapDtoSchema>

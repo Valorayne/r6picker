@@ -1,6 +1,6 @@
-import { MapData } from "./index";
+import { MapDto } from "shared/types"
 
-export const BANK: MapData = {
+export const BANK: MapDto = {
   id: "bank",
   name: "Bank",
   dimensions: {

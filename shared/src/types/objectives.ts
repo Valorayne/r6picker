@@ -1,26 +1,23 @@
-import { LocationDtoSchema } from "./types";
+import { PositionDtoSchema } from "./types";
 import { Schemas, TypeFromSchema } from "../schemas";
 
-export type BombObjectiveDto = TypeFromSchema<typeof BombObjectiveDtoSchema>
 const BombObjectiveDtoSchema = Schemas.object({
-  id: Schemas.string(),
+  id: Schemas.number(),
   type: Schemas.string().enum("bomb"),
-  a: LocationDtoSchema,
-  b: LocationDtoSchema
+  a: PositionDtoSchema,
+  b: PositionDtoSchema
 })
 
-export type SecureAreaObjectiveDto = TypeFromSchema<typeof SecureAreaObjectiveDtoSchema>
 const SecureAreaObjectiveDtoSchema = Schemas.object({
-  id: Schemas.string(),
+  id: Schemas.number(),
   type: Schemas.string().enum("secureArea"),
-  location: LocationDtoSchema
+  position: PositionDtoSchema
 })
 
-export type HostageObjectiveDto = TypeFromSchema<typeof HostageObjectiveDtoSchema>
 const HostageObjectiveDtoSchema = Schemas.object({
-  id: Schemas.string(),
+  id: Schemas.number(),
   type: Schemas.string().enum("hostage"),
-  location: LocationDtoSchema
+  position: PositionDtoSchema
 })
 
 export type ObjectiveDto = TypeFromSchema<typeof ObjectiveDtoSchema>

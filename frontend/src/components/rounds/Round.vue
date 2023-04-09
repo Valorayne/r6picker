@@ -26,7 +26,7 @@ const selectionConfirmed = () => {
 </script>
 
 <template>
-  <Map :map-id="round.map" :objective="round.objective"/>
+  <Map :map-id="round.mapId" :layer-id="round.layerId" :objective-id="round.objectiveId"/>
   <AttackerPicker
       class="fixed top-4 left-4"
       :selected-attacker="selectedAttacker"

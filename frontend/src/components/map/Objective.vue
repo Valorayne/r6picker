@@ -4,6 +4,7 @@ import ObjectiveMarker from "@/components/map/ObjectiveMarker.vue";
 import type { PositionDto } from "shared/types/types";
 
 defineProps<{
+  objectiveLayerId: number
   objective: ObjectiveDto
   selectedLayer: number
   mapPosition: PositionDto
@@ -13,22 +14,22 @@ defineProps<{
 <template>
   <div v-if="objective.type === 'bomb'">
     <ObjectiveMarker
-        v-if="selectedLayer === objective.a.layer"
+        v-if="selectedLayer === objectiveLayerId"
         class="bg-orange-600"
-        :position="objective.a.position"
+        :position="objective.a"
         :map-position="mapPosition"
         label="A"/>
     <ObjectiveMarker
-        v-if="selectedLayer === objective.b.layer"
+        v-if="selectedLayer === objectiveLayerId"
         class="bg-orange-600"
-        :position="objective.b.position"
+        :position="objective.b"
         :map-position="mapPosition"
         label="B"/>
   </div>
   <div v-else>
     <ObjectiveMarker
-        v-if="selectedLayer === objective.location.layer"
-        :position="objective.location.position"
+        v-if="selectedLayer === objectiveLayerId"
+        :position="objective.position"
         :map-position="mapPosition"
         :label="objective.type === 'hostage' ? 'H' : 'S'"/>
   </div>

@@ -1,10 +1,6 @@
 import { MapDto, MapId } from "shared/types/maps";
-import { Maps } from "../entities/mapEntity";
-import { toMapDto } from "../serializers/toMapDto";
-import { Boom } from "@hapi/boom";
+import { ALL_MAPS } from "../data/map";
 
-export async function getOneMap(id: MapId): Promise<MapDto | Boom> {
-  const map = await Maps.findOne({ id })
-  if (!map) return new Boom(`Map with id '${id}' not found`, { statusCode: 404 })
-  return toMapDto(map)
+export async function getOneMap(id: MapId): Promise<MapDto> {
+  return ALL_MAPS[id]
 }

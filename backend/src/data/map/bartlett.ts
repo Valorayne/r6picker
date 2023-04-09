@@ -1,6 +1,6 @@
-import { MapData } from "./index";
+import { MapDto } from "shared/types"
 
-export const BARTLETT: MapData = {
+export const BARTLETT: MapDto = {
   id: "bartlett",
   name: "Bartlett University",
   dimensions: {
