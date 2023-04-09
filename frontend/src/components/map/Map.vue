@@ -13,9 +13,10 @@ const props = defineProps<{
 }>()
 const mapQuery = useMapQuery(computed(() => props.mapId))
 
-const selectedLayer = ref(2)
+const selectedLayer = ref(0)
 const layerClicked = (layerId: number) => selectedLayer.value = layerId
 
+// make sure each new round starts with the objective layer selected
 watch(() => props.layerId, (layerId) => selectedLayer.value = layerId, { immediate: true })
 
 </script>

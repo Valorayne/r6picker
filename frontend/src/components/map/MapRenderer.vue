@@ -40,7 +40,6 @@ const objective = computed(() => props.layers.find(
   >
     <MapLayer v-for="layer of extraLayers" :layerId="layer.id" :offset="layer.offset" :position="position"
               :selectedLayer="selectedLayer" :mapId="mapId"/>
-    <Objective :objective="objective" :objective-layer-id="objectiveLayerId" :selected-layer="selectedLayer"
-               :map-position="position"/>
+    <Objective :objective="objective" v-if="selectedLayer === objectiveLayerId" :map-position="position"/>
   </div>
 </template>
