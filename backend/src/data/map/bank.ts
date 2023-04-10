@@ -24,13 +24,13 @@ export const BANK: MapDto = {
     objectives: [{
       id: 0,
       type: "bomb",
-      a: { x: 1270, y: 675 },
-      b: { x: 1405, y: 600 }
+      a: { x: 596, y: 497 },
+      b: { x: 731, y: 422 }
     }, {
       id: 1,
       type: "bomb",
-      a: { x: 1370, y: 900 },
-      b: { x: 1535, y: 835 }
+      a: { x: 696, y: 722 },
+      b: { x: 861, y: 657 }
     }]
   }, {
     id: 2,
@@ -39,8 +39,8 @@ export const BANK: MapDto = {
     objectives: [{
       id: 0,
       type: "bomb",
-      a: { x: 1375, y: 585 },
-      b: { x: 1240, y: 650 }
+      a: { x: 701, y: 407 },
+      b: { x: 566, y: 472 }
     }]
   }, {
     id: 3,

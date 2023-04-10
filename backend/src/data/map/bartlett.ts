@@ -29,13 +29,13 @@ export const BARTLETT: MapDto = {
     objectives: [{
       id: 0,
       type: "bomb",
-      a: { x: 1835, y: 603 },
-      b: { x: 1870, y: 770 }
+      a: { x: 1011, y: 353 },
+      b: { x: 1046, y: 520 }
     }, {
       id: 1,
       type: "bomb",
-      a: { x: 992, y: 710 },
-      b: { x: 992, y: 880 }
+      a: { x: 168, y: 460 },
+      b: { x: 168, y: 630 }
     }]
   }, {
     id: 3,

@@ -19,10 +19,8 @@ const props = defineProps<{
 const { isDragging, position, startDrag, endDrag, moveMouse } = useDraggable({ dimensions: props.dimensions })
 const extraLayers = computed(() => props.layers.slice(1))
 
-const objective = computed(() => props.layers.find(
-    (layer) => layer.id === props.objectiveLayerId)!.objectives.find(
-    (objective) => objective.id === props.objectiveId)!
-)
+const layer = computed(() => props.layers.find((layer) => layer.id === props.objectiveLayerId)!)
+const objective = computed(() => layer.value.objectives.find((objective) => objective.id === props.objectiveId)!)
 
 </script>
 
@@ -40,6 +38,7 @@ const objective = computed(() => props.layers.find(
   >
     <MapLayer v-for="layer of extraLayers" :layerId="layer.id" :offset="layer.offset" :position="position"
               :selectedLayer="selectedLayer" :mapId="mapId"/>
-    <Objective :objective="objective" v-if="selectedLayer === objectiveLayerId" :map-position="position"/>
+    <Objective :objective="objective" :offset="layer.offset" v-if="selectedLayer === objectiveLayerId"
+               :map-position="position"/>
   </div>
 </template>
