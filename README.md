@@ -7,7 +7,7 @@ useful at some point.
 
 ### Example App
 
-A demo of the app hosted on AWS Beanstalk [can be found here](http://r6picker.valorayne.com/)
+A demo of the app hosted on AWS Beanstalk [can be found here](http://r6picker.valorayne.com/) (not optimized for mobile)
 
 ## Features
 
