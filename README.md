@@ -5,7 +5,9 @@ picking [Rainbow Six Siege](https://www.ubisoft.com/en-gb/game/rainbow-six/siege
 based on intel about enemy operators, sites and reinforced walls. For now it's more of an experiment, but it might prove
 useful at some point.
 
-[Try the example app here!](http://r6pickerfrontend-env.eba-w6kjgika.eu-north-1.elasticbeanstalk.com/)
+### Example App
+
+A demo of the app hosted on AWS Beanstalk [can be found here](http://r6picker.valorayne.com/)
 
 ## Features
 
